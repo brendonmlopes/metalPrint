@@ -28,7 +28,7 @@ void moveTo(int xTarget, int yTarget){
   const int a = abs(xTarget-xPos);
   const int b = abs(yTarget-yPos); 
   float prop = (float)min(a,b)/(float)max(a,b);
-//Find the irreductible fraction for prop and use denom in x or y and numerator in y or x
+  //X axis
   while(abs(xPos-xTarget)>=threshold | abs(yPos-yTarget)>=threshold){
     if(xPos-xTarget>0){
       if(abs(xPos-xTarget)<k_threshold*threshold){
@@ -70,6 +70,7 @@ void moveTo(int xTarget, int yTarget){
       Serial.println("x on target");
     }
   
+    // Y axis
     if(yPos-yTarget>0){
       if(abs(yPos-yTarget)<k_threshold*threshold){
         stepperY.step(-slowStep);
@@ -103,6 +104,7 @@ void moveTo(int xTarget, int yTarget){
   }
 }
 
+// Go to a position without a given path
 void findPos(int xTarget , int yTarget, int zTarget) {
   Serial.println("z Rectract");
   for(int i = 0 ; i < height ; i++){
@@ -125,10 +127,6 @@ void findPos(int xTarget , int yTarget, int zTarget) {
     if(xPos - xTarget == 0 ){
       Serial.println("x on target");
     }
-    Serial.println("____________");
-    Serial.println("x");
-    Serial.println(xPos);
-    Serial.println(xPos-xTarget);
   
     if(yPos-yTarget>0){
       stepperY.step(-1);
@@ -141,10 +139,6 @@ void findPos(int xTarget , int yTarget, int zTarget) {
     if(yPos - yTarget == 0 ){
       Serial.println("y on target");
     }
-    Serial.println("____________");
-    Serial.println(("y"));
-    Serial.println(yPos);
-    Serial.println(yPos-yTarget);
   }
   while(abs(zPos-zTarget)>=threshold){
     stepperZ.step(1);
