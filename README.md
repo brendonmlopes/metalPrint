@@ -21,12 +21,12 @@ metalPrint is a project designed to provide tools, code, and resources for metal
 
 ## Function Explanations
 
+[![VIDEO](https://img.youtube.com/vi/N0WeOvSnrz4/0.jpg)](https://www.youtube.com/watch?v=N0WeOvSnrz4)
 ### `moveTo(xTarget, yTarget)`
 
 Moves the stepper motors for the X and Y axes to the target positions specified by `xTarget` and `yTarget` (in steps). The function calculates the distance to move in each direction and steps each motor incrementally until the position is within a defined threshold of the target. It uses buffers to proportionally step each motor so both axes reach their targets at the same time, printing messages to the serial monitor when each axis is on target.
 
 ### `findPos(xTarget, yTarget, zTarget)`
-[![VIDEO](https://img.youtube.com/vi/N0WeOvSnrz4/0.jpg)](https://www.youtube.com/watch?v=N0WeOvSnrz4)
 
 Moves all three stepper motors (X, Y, and Z) to the specified target positions. First, it retracts the Z axis to its lowest position. Then, it moves the X and Y axes to their targets, printing the current position and difference from the target for each axis to the serial monitor. Finally, it moves the Z axis up to the specified target position and confirms when the Z axis is on target.
 
