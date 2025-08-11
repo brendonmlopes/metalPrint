@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main()
+{
+    char *command = "gcc parser.c -o parser";
+    int result = system(command);
+
+    if (result == -1) {
+        perror("Error executing command");
+        return EXIT_FAILURE;
+    }
+
+    printf("Build completed successfully.\n");
+    printf("Executing compiled binary...\n");
+    printf("______________________________\n\n");
+    system("./parser");
+    printf("\n\n______________________________\nExecution ended.\n");
+    return EXIT_SUCCESS;
+}
