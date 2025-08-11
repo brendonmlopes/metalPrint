@@ -1,3 +1,5 @@
 resources
 build
 parser
+tests/g1.out
+
