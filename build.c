@@ -4,6 +4,8 @@
 
 int main()
 {
+    printf("______________________________\n");
+    printf("Compiling parser.c...\n");
     char *command = "gcc parser.c -o parser";
     int result = system(command);
 

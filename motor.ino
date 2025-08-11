@@ -28,7 +28,16 @@ void setup() {
   moveTo(100,200,5);
 }
 
-void moveTo(int xTarget, int yTarget, float dt){
+void weldTo(int xTarget, int yTarget, float dt, float weldFlow){
+  Serial.println("Welding...");
+  moveTo(xTarget, yTarget, dt, weldFlow);
+  // Simulate welding process
+  delay(1000);
+  Serial.println("Weld complete.");
+
+}
+
+void moveTo(int xTarget, int yTarget, float dt, float weldFlow = 0.0) {
   const int distX = abs(xTarget-xPos);
   const int distY = abs(yTarget-yPos);
   double bufferX = 0; 

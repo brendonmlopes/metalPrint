@@ -1,7 +1,9 @@
 G0 X10 Y10 Z10
 G0 X10 Y10 Z0
+;Comment 1
 G1 X0 Y0 Z0
 G2 X10 Y0 Z10 I-1 J2
+;This is another comment
 G0 X0 Y0 Z0
 G3 X10 Y0 Z10 I-1 J2
 
