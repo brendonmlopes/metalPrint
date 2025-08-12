@@ -59,13 +59,20 @@ int main()
         //
           //TODO: study the circle functions G2 and G3 to parse them correctly
         if(cmd[1] == '2'){
+          int i, j, r, s;
+          int clockwise = 1; // 1 for clockwise, 0 for counterclockwise
           printf("Writing G2 command to output\n");
-          printf("This command is not implemented yet\n");
+          sscanf(line, "G2 X%d Y%d R%d S&f", &x, &y, &r, &s);
+          fprintf(out, "arcTo,%d,%d,%d,%d,%f\n", x, y, r, clockwise, s);
         }
+
         // The format is G3 X<value> Y<value> Z<value>
-        if(cmd[1] == '2'){
+        if(cmd[1] == '3'){
+          int i, j, r;
+          int clockwise = 0; // 1 for clockwise, 0 for counterclockwise
           printf("Writing G2 command to output\n");
-          printf("This command is not implemented yet\n");
+          sscanf(line, "G3 X%d Y%d R%d S&f", &x, &y, &r, &s);
+          fprintf(out, "arcTo,%d,%d,%d,%d,%f\n", x, y, r, clockwise, s);
         }
       }
     }
