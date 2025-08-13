@@ -1,6 +1,7 @@
 # metalPrint
 
 metalPrint is a project designed to provide tools, code, and resources for metal 3D printing using Arduino/RaspberryPi-based hardware control.
+This project aims to simplify the process of controlling metal 3D printers by providing a modular and extensible codebase that can be adapted for various hardware configurations.
 
 ## Features
 
@@ -12,12 +13,22 @@ metalPrint is a project designed to provide tools, code, and resources for metal
 ## Getting Started
 
 ### Prerequisites
-
+To get started with metalPrint, you will need the following software and hardware:
 - Arduino IDE (download from [arduino.cc](https://www.arduino.cc/en/software))
 - Compatible Arduino board (such as Arduino Uno, Mega, Nano, etc.)
 - Raspberry Pi (To come)
 - USB cable for programming Arduino
 - Basic electronics components (wires, breadboard, sensors, actuators as required for your setup)
+
+### Installation
+
+#### 1. Clone the repository:
+```bash
+git clone https://github.com/brendonmlopes/metalPrint.git
+cd metalPrint
+gcc build.c -o build
+./build
+```
 
 ## Function Explanations
 

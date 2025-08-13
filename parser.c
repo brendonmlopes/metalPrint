@@ -4,6 +4,9 @@
 
 int main()
 {
+  float weldFlow = 0.0;
+  //printf("Enter weld flow rate (0.0 - 1.0): ");
+  //scanf("%f", &weldFlow);
   const char *commands[] = {
   "G0","G1", "G2", "G3", "G4", "G5", "G6"
   };
@@ -21,16 +24,29 @@ int main()
   }
 
   char line[256];
-
-  while (fgets(line, sizeof(line), file)) {
+  int lineIdx = 0;
+  while ( fgets(line, sizeof(line), file) ) {
+    if( lineIdx == 0 ){
+      // Skip the first line
+      printf("Reading header: %s", line);
+      for(int i=0 ; i < sizeof(line) / sizeof(line[0]); i++){
+        if(line[i] == 'W'){
+          //atof converts the string to a float
+          weldFlow = atof(&line[i+1]);
+        }
+      }
+      lineIdx++;
+      continue;
+    }
     // Process the line
     if(line[0] != ';'){
       printf(line);
     }
     else{
-      //printf("Comment found: %s", line);
+      fprintf(out, "//%s", &line[1]);
       continue; // Skip  
     }
+
     //Because we used "continue" in comments, now we can assume that the line is commands only
     for (int i = 0; i < sizeof(commands) / sizeof(commands[0]); i++) {
       if (line[0] == 'G' && line[1] == commands[i][1]) {
@@ -47,36 +63,38 @@ int main()
         if(cmd[1] == '0'){
           printf("Writing G0 command to output\n");
           sscanf(line, "G0 X%d Y%d Z%d", &x, &y, &z);
-          fprintf(out, "moveTo,%d,%d,%d\n", x, y, z);
+          fprintf(out, "moveTo,%d,%d,%d,%f\n", x, y, z, weldFlow);
         }
         // The format is G1 X<value> Y<value> Z<value>
         if(cmd[1] == '1'){
           printf("Writing G1 command to output\n");
           sscanf(line, "G1 X%d Y%d Z%d", &x, &y, &z);
-          fprintf(out, "weldTo,%d,%d,%d\n", x, y, z);
+          fprintf(out, "weldTo,%d,%d,%d,%f\n", x, y, z, weldFlow);
         }
-        // The format is G2 X<value> Y<value> Z<value>
+        // The format is G2 X<value> Y<value> R<value>
         //
           //TODO: study the circle functions G2 and G3 to parse them correctly
         if(cmd[1] == '2'){
-          int i, j, r, s;
+          int r;
           int clockwise = 1; // 1 for clockwise, 0 for counterclockwise
           printf("Writing G2 command to output\n");
-          sscanf(line, "G2 X%d Y%d R%d S&f", &x, &y, &r, &s);
-          fprintf(out, "arcTo,%d,%d,%d,%d,%f\n", x, y, r, clockwise, s);
+          sscanf(line, "G2 X%d Y%d R%d", &x, &y, &r);
+          fprintf(out, "arcTo,%d,%d,%d,%d,%f\n", x, y, r, clockwise, weldFlow);
         }
 
-        // The format is G3 X<value> Y<value> Z<value>
+        // The format is G3 X<value> Y<value> R<value>
         if(cmd[1] == '3'){
-          int i, j, r;
+          int r;
           int clockwise = 0; // 1 for clockwise, 0 for counterclockwise
-          printf("Writing G2 command to output\n");
-          sscanf(line, "G3 X%d Y%d R%d S&f", &x, &y, &r, &s);
-          fprintf(out, "arcTo,%d,%d,%d,%d,%f\n", x, y, r, clockwise, s);
+          printf("Writing G3 command to output\n");
+          sscanf(line, "G3 X%d Y%d R%d", &x, &y, &r);
+          fprintf(out, "arcTo,%d,%d,%d,%d,%f\n", x, y, r, clockwise, weldFlow);
         }
       }
     }
+    lineIdx++;
   }
   fclose(file);
   return 0;
 }
+
