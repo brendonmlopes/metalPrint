@@ -3,27 +3,22 @@ let bufferX = 0;
 let bufferY = 0;
 let order = 1;
 let currentOrder = 1;
+const threshold = 1;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   head = new Head(width / 2, height / 2, 10);
-  frameRate(5);
-  background(0);
+  frameRate(60);
   noStroke()
 }
 
 function draw() {
+  background(0,0,200,0.9999);
   head.display();
   head.moveTo(800,100,1);
-  head.moveTo(800,300,2);
-  head.moveTo(100,300,3);
-  head.moveTo(100,100,4);
-  head.moveTo(400,100,5);
-  head.moveTo(800,250,6);
-  head.moveTo(400,400,7);
-  head.moveTo(200,200,8);
-  head.weld();
-
+  head.moveTo(100,800,2);
+  head.moveTo(400,400,3);
+  head.moveTo(900,300,4);
   if(mouseIsPressed) {
     noLoop()
   }
@@ -48,8 +43,7 @@ class Head{
       fill('red');
     }
     ellipse(this.x, this.y, this.size);
-    fill('white');
-    ellipse(this.x, this.y, this.size/2);
+    point(this.x, this.y);
   }
 
   moveTo(x, y, orderNum) {
@@ -60,44 +54,40 @@ class Head{
     fill('yellow');
     ellipse(x,y, this.size);
     fill('blue');
-    ellipse(x,y, this.size/2);
-    let i = 0
-    while(abs(this.x - x)>=1 || abs(this.y - y)>=1) {
-      bufferX += abs(x - this.iniPosX)/2000;
-      bufferY += abs(y - this.iniPosY)/1000;
+    point(x,y);
+
+    bufferX += abs(x - this.iniPosX)/max(windowWidth, windowHeight);
+    bufferY += abs(y - this.iniPosY)/max(windowWidth, windowHeight);
 //      console.log(bufferX, bufferY);
-      if(bufferX >= 1) {
-        if(this.x < x) {
-          this.x += 1;
+    if(bufferX >= 1) {
+     bufferX-=1;
+      if(this.x < x) {
+        this.x += 1;
 //          console.log("Moving right");
-        } else if(this.x > x) {
-          this.x -= 1;
+      } else if(this.x > x) {
+        this.x -= 1;
 //          console.log("Moving left");
-        }
-        bufferX-=1;
       }
-        if(bufferY >= 1) {
+    }
+      if(bufferY >= 1) {
+        bufferY-=1;
         if(this.y < y) {
           this.y += 1;
-//          console.log("Moving down");
+  //          console.log("Moving down");
         } else if(this.y > y) {
           this.y -= 1;
-//          console.log("Moving up");
+  //          console.log("Moving up");
         }
-        bufferY-=1;
-      }
-
-      if(i>50){
-        if(this.x == x && this.y == y) {
-          console.log("Reached target at", x, y);
-          order++;
-        }
-        break;
-      }
-      i++;
-      this.display()
     }
+//    console.log("Moving to", this.x, this.y, "Target:", x, y);
+//    console.log("Buffer:", bufferX, bufferY);
 
+    if(this.x - x <= threshold && this.y - y <= threshold) {
+      this.iniPosX = this.x;
+      this.iniPosY = this.y;
+      console.log("Reached target at", x, y);
+      order++;
+    }
   }
 
   weld() {
