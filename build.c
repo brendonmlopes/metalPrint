@@ -5,6 +5,10 @@
 int main()
 {
     printf("______________________________\n");
+    printf("Build script by Brendon Maia (https://github.com/brendonmlopes)\n");
+    printf("Repository on github: https://github.com/brendonmlopes/metalPrint.git\n");
+    printf("______________________________\n");
+    printf("______________________________\n");
     printf("Compiling parser.c...\n");
     char *command = "gcc parser.c -o parser";
     int result = system(command);

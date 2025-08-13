@@ -4,7 +4,6 @@
 
 int main()
 {
-  float weldFlow = 0.0;
   //printf("Enter weld flow rate (0.0 - 1.0): ");
   //scanf("%f", &weldFlow);
   const char *commands[] = {
@@ -23,8 +22,11 @@ int main()
     return 1;
   }
 
-  char line[256];
   int lineIdx = 0;
+  int commentCount = 0;
+  char line[256];
+  float weldFlow = 0.0;
+
   while ( fgets(line, sizeof(line), file) ) {
     if( lineIdx == 0 ){
       // Skip the first line
@@ -42,7 +44,9 @@ int main()
     if(line[0] != ';'){
       printf(line);
     }
+    //Found a comment
     else{
+      commentCount++;
       fprintf(out, "//%s", &line[1]);
       continue; // Skip  
     }
@@ -63,13 +67,13 @@ int main()
         if(cmd[1] == '0'){
           printf("Writing G0 command to output\n");
           sscanf(line, "G0 X%d Y%d Z%d", &x, &y, &z);
-          fprintf(out, "moveTo,%d,%d,%d,%f\n", x, y, z, weldFlow);
+          fprintf(out, "moveTo,%d,%d,%d,%f;\n", x, y, z, weldFlow);
         }
         // The format is G1 X<value> Y<value> Z<value>
         if(cmd[1] == '1'){
           printf("Writing G1 command to output\n");
           sscanf(line, "G1 X%d Y%d Z%d", &x, &y, &z);
-          fprintf(out, "weldTo,%d,%d,%d,%f\n", x, y, z, weldFlow);
+          fprintf(out, "weldTo,%d,%d,%d,%f;\n", x, y, z, weldFlow);
         }
         // The format is G2 X<value> Y<value> R<value>
         //
@@ -79,7 +83,7 @@ int main()
           int clockwise = 1; // 1 for clockwise, 0 for counterclockwise
           printf("Writing G2 command to output\n");
           sscanf(line, "G2 X%d Y%d R%d", &x, &y, &r);
-          fprintf(out, "arcTo,%d,%d,%d,%d,%f\n", x, y, r, clockwise, weldFlow);
+          fprintf(out, "arcTo,%d,%d,%d,%d,%f;\n", x, y, r, clockwise, weldFlow);
         }
 
         // The format is G3 X<value> Y<value> R<value>
@@ -88,12 +92,18 @@ int main()
           int clockwise = 0; // 1 for clockwise, 0 for counterclockwise
           printf("Writing G3 command to output\n");
           sscanf(line, "G3 X%d Y%d R%d", &x, &y, &r);
-          fprintf(out, "arcTo,%d,%d,%d,%d,%f\n", x, y, r, clockwise, weldFlow);
+          fprintf(out, "arcTo,%d,%d,%d,%d,%f;\n", x, y, r, clockwise, weldFlow);
         }
       }
     }
     lineIdx++;
   }
+  printf("End of file reached\n");
+  printf("%d lines processed\n", lineIdx+1);
+  printf("%d commands found\n", lineIdx-commentCount);
+  printf("Weld flow rate: %f\n", weldFlow);
+  printf("Output written to tests/g1.out\n");
+  fclose(out);
   fclose(file);
   return 0;
 }
