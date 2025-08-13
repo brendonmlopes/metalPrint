@@ -1,26 +1,51 @@
 let head;
-let bufferX = 0;
-let bufferY = 0;
 let order = 1;
 let currentOrder = 1;
 const threshold = 1;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
-  head = new Head(width / 2, height / 2, 10);
-  frameRate(60);
-  noStroke()
+  createCanvas(windowWidth, windowHeight, WEBGL);
+  head = new Head(0,0, 10);
+  noStroke();
 }
 
 function draw() {
-  background(0,0,200,0.9999);
+  let spacebarIsPressed = keyIsDown(32);
+  if(spacebarIsPressed) {
+    noLoop();
+  }
+  background(200);
+  orbitControl();
+  ambientLight(150);
+  directionalLight(255, 255, 255, 0, -1, 0);
+  pointLight(255, 255, 255, head.x,-100 , head.y);
+  specularMaterial(250);
+  shininess(50);
+  
+  //table
+  push();
+    translate(0, 10, 0);
+    fill(150);
+    box(10000, 2, 10000);
+  pop()
+  rotateX(HALF_PI);
   head.display();
-  head.moveTo(800,100,1);
-  head.moveTo(100,800,2);
-  head.moveTo(400,400,3);
-  head.moveTo(900,300,4);
+  push()
+    stroke(0);
+    translate(-width/8, -height/8);
+    fill('blue')
+    //box(100,100,100);
+  pop();
+  head.moveTo(80,100,1);
+  head.moveTo(10,800,2);
+  head.moveTo(40,400,3);
+  head.moveTo(90,300,4);
   if(mouseIsPressed) {
-    noLoop()
+    if(!head.welding) {
+      head.weld();
+    }else {
+      head.welding = false;
+    }
   }
 }
 
@@ -33,8 +58,8 @@ class Head{
     this.size = size;
     this.welding = false;
     this.moving = false;
-    bufferX = 0
-    bufferY = 0;
+    this.bufferX = 0
+    this.bufferY = 0;
   }
 
   display() {
@@ -42,8 +67,11 @@ class Head{
     if(this.welding){
       fill('red');
     }
-    ellipse(this.x, this.y, this.size);
-    point(this.x, this.y);
+    push()
+      translate(this.x, this.y);
+      sphere(this.size);
+      point(this.x, this.y);
+    pop();
   }
 
   moveTo(x, y, orderNum) {
@@ -52,15 +80,16 @@ class Head{
       return;
     }
     fill('yellow');
-    ellipse(x,y, this.size);
-    fill('blue');
-    point(x,y);
+    push();
+      translate(x, y);
+      sphere(this.size);
+    pop();
 
-    bufferX += abs(x - this.iniPosX)/max(windowWidth, windowHeight);
-    bufferY += abs(y - this.iniPosY)/max(windowWidth, windowHeight);
+    this.bufferX += abs(x - this.iniPosX)/max(windowWidth, windowHeight);
+    this.bufferY += abs(y - this.iniPosY)/max(windowWidth, windowHeight);
 //      console.log(bufferX, bufferY);
-    if(bufferX >= 1) {
-     bufferX-=1;
+    if(this.bufferX >= 1) {
+     this.bufferX-=1;
       if(this.x < x) {
         this.x += 1;
 //          console.log("Moving right");
@@ -69,8 +98,8 @@ class Head{
 //          console.log("Moving left");
       }
     }
-      if(bufferY >= 1) {
-        bufferY-=1;
+      if(this.bufferY >= 1) {
+        this.bufferY-=1;
         if(this.y < y) {
           this.y += 1;
   //          console.log("Moving down");
@@ -82,7 +111,7 @@ class Head{
 //    console.log("Moving to", this.x, this.y, "Target:", x, y);
 //    console.log("Buffer:", bufferX, bufferY);
 
-    if(this.x - x <= threshold && this.y - y <= threshold) {
+    if(abs(this.x - x) <= threshold && abs(this.y - y <= threshold)) {
       this.iniPosX = this.x;
       this.iniPosY = this.y;
       console.log("Reached target at", x, y);
