@@ -23,18 +23,18 @@ int main(int argc, char *argv[])
     return 1;
   }
 
-  char *mode = argc > 1 ? "-v" : 0; 
+  char *mode = argc > 1 ? argv[1] : "";
   int lineIdx = 0;
   int commentCount = 0;
   char line[256];
   float weldFlow = 0.0;
-  if(mode == "-v"){
+  if(strcmp(mode,"-v")==0){
     printf("G-code Parser\n");
   } 
   while ( fgets(line, sizeof(line), file) ) {
     if( lineIdx == 0 ){
       // Skip the first line
-      if(mode == "-v"){
+      if(strcmp(mode,"-v")==0){
         printf("Reading header: %s", line);
       }
       for(int i=0 ; i < sizeof(line) / sizeof(line[0]); i++){
@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
       continue;
     }
     // Process the line
-    if(line[0] != ';' && mode == "-v"){
+    if(line[0] != ';' && strcmp(mode,"-v")==0){
       printf(line);
     }
     //Found a comment
@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
 
         strcpy(buffer, commands[i]);
         cmd = buffer;
-        if(mode == "-v"){
+        if(strcmp(mode,"-v")==0){
           printf("Command found: %s\n", cmd);
         }
 
@@ -97,14 +97,14 @@ int main(int argc, char *argv[])
           sscanf(line, "G3 X%d Y%d R%d", &x, &y, &r);
           fprintf(out, "arcTo,%d,%d,%d,%d,%f;\n", x, y, r, clockwise, weldFlow);
         }
-          if(mode == "-v"){
+        if(strcmp(mode,"-v")==0){
             printf("Writing G%d command to output\n", cmd[1]);
           }
       }
     }
     lineIdx++;
   }
-  if(mode == "-v"){
+  if(strcmp(mode,"-v")==0){
     printf("End of file reached\n");
     printf("%d lines processed\n", lineIdx+1);
     printf("%d commands found\n", lineIdx-commentCount);
