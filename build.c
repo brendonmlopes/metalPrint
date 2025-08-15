@@ -21,10 +21,10 @@ int main(int argc, char *argv[])
     }
 
   if(strcmp(mode,"-v")==0){
-
-      printf("Build completed successfully.\n");
-      printf("Executing compiled binary...\n");
-      printf("______________________________\n\n");
+    
+    printf("Compilation completed on parser.c ...\n");
+    printf("Executing compiled binary...\n");
+    printf("______________________________\n\n");
     }
 
   // Execute the compiled binary with the mode argument
@@ -36,7 +36,17 @@ int main(int argc, char *argv[])
   system(str);
 
   if(strcmp(mode,"-v")==0){
-      printf("\n\n______________________________\nExecution ended.\n");
+    printf("________________________________________\nExecution ended\n");
+    printf("Compiling motor.ino ...\n");
+    printf("________________________________________\n");
+    system("arduino-cli compile --fqbn arduino:avr:uno motor");
+  }else{
+    system("arduino-cli compile --fqbn arduino:avr:uno motor --quiet");
     }
-    return EXIT_SUCCESS;
+  if(strcmp(mode,"-v")==0){
+    printf("Compilation completed on motor.ino ...\n");
+    printf("Build completed successfully.\n");
+    printf("Execution ended.\n");
+  }
+  return EXIT_SUCCESS;
 }
