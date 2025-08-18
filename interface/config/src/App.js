@@ -1,26 +1,41 @@
-import logo from './assets/logo_white.png';
 import './App.css';
 import 'animate.css';
-import {NavBar} from './components/NavBar.js';
+
 import {useState} from 'react';
+import {useEffect} from 'react';
+
+import NavBar from './components/NavBar.js';
+import Home from './pages/Home.js';
+import Settings from './pages/Settings.js';
 
 function App() {
+  let pages = {
+    'home':Home,
+    'settings':Settings,
+  }
+
+  useEffect(()=>{
+    console.log("Loading done");
+  })
+  
+
   let [state, setState] = useState({
-    Page:'Home',
+    page:'home',
   });
+
+  function setPage(page){
+    setState({
+      ...state,
+      page:page,
+    })
+  }
+
+  let PageComponent = pages[state.page]
 
   return (
     <div className="App">
       <NavBar />
-      <header className="App-header">
-        <img src={logo} className="logo animate__animated animate__backInDown animate__delay-1s" alt="logo" />
-          <h1> Configurações da Impressora </h1>
-        <div>
-        <a href="">
-          <button className="btn btn-lg btn-danger">Começar</button>
-        </a>
-        </div>
-      </header>
+      <PageComponent state={state} setPage={setPage}/>
     </div>
   );
 }
