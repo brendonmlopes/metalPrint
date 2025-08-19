@@ -4,9 +4,9 @@ import React from 'react';
 
 export default function Settings(props) {
   return(
-    <>
-      <h1> Under Construction! </h1>
-    </>
+    <div className=" App-header">
+      
+    </div>
   )
 }
 
