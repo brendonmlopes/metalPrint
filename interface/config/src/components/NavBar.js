@@ -20,13 +20,13 @@ export default function NavBar(props){
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
         <li className="nav-item">
-          <a className="nav-link active" aria-current="page" onClick={()=>setPage('home')} href="#">Início</a>
+          <a className="nav-link active" aria-current="page" onClick={()=>setPage('home')} href="#">Home</a>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="#" onClick={()=>setPage('dashboard')}>Dashboard</a>
+          <a className="nav-link active" href="#" onClick={()=>setPage('dashboard')}>Dashboard</a>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="#" onClick={()=>setPage('simulator')}>Simulador</a>
+          <a className="nav-link active" href="#" onClick={()=>setPage('simulator')}>Simulator</a>
         </li>
       </ul>
     </div>
