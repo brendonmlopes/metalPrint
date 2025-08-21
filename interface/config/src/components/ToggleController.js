@@ -1,28 +1,52 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from "react";
 
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch from '@mui/material/Switch';
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Switch from "@mui/material/Switch";
 
 export default function ToggleController(props) {
-  let check = false;
-  let fontSize = 16;
+  const title = props.title || "All";
+  const controls = props.control || []; // [{ title: "A" }, { title: "B" }, ...]
 
-  let [state, setState] = useState(false);
+  // one boolean per control
+  const [states, setStates] = useState(() => controls.map(() => false));
 
-  if(props.checked){
-    check = true;
-  }
-  if(props.fontSize){
-    fontSize = props.fontSize;
-  }
+  const allOn = states.length > 0 && states.every(Boolean);
 
-  return(
-    <div className="mt-2">
-      <div className="my-1 mx-5 d-flex" style={{alignItems:"center", justifyContent:"space-around"}}>
-        <p style={{fontSize:fontSize}}> {props.title} </p>
-        <FormControlLabel  sx={{ m: 0, justifyContent: 'space-around', width: '100%' }} control={<Switch onChange={()=>setState(!state)} check/>} label={state ? "On" : "Off"}/>
-      </div>
+  const toggleAll = (checked) => {
+    setStates(states.map(() => checked));
+  };
+
+  const toggleOne = (idx) => (e) => {
+    const next = [...states];
+    next[idx] = e.target.checked;
+    setStates(next);
+  };
+
+  return (
+    <div>
+      <FormControlLabel
+        control={
+          <Switch
+            checked={allOn}
+            onChange={(e) => toggleAll(e.target.checked)}
+          />
+        }
+        label={`${title}: ${allOn ? "On" : "Off"}`}
+      />
+
+      {controls.map((el, idx) => (
+        <FormControlLabel
+          key={el.id ?? el.title ?? idx}
+          control={
+            <Switch
+              checked={!!states[idx]}
+              onChange={toggleOne(idx)}
+            />
+          }
+          label={`${el.title}: ${states[idx] ? "On" : "Off"}`}
+        />
+      ))}
     </div>
   );
 }
+
