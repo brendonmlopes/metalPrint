@@ -10,6 +10,8 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import Button from '@mui/material/Button';
 import ToggleController from '../components/ToggleController';
 import BinaryBulb from '../components/BinaryBulb';
+import Input from '@mui/material/Input';
+
 
 export default function Settings(props) {
 
@@ -22,7 +24,17 @@ export default function Settings(props) {
             <h2 className="animate__animated animate__bounce">Power motors</h2>
           </div>
 
-            <div className="col-7">
+            <div className="col-3">
+            </div>
+
+            <div className="col-2">
+              <h2>Motor speed</h2>
+              <div className="bg-white rounded">
+                <Input />
+              </div>
+            </div>
+
+            <div className="col-2">
             </div>
 
             <div className="col-3">
