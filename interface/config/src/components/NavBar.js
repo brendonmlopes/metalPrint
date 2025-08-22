@@ -23,6 +23,12 @@ export default function NavBar(props){
           <a className="nav-link active" aria-current="page" onClick={()=>setPage('home')} href="#">Home</a>
         </li>
         <li className="nav-item">
+          <a className="nav-link active" aria-current="page" onClick={()=>setPage('settings')} href="#">Settings</a>
+        </li>
+        <li className="nav-item">
+          <a className="nav-link active" aria-current="page" onClick={()=>setPage('sensor')} href="#">Sensors</a>
+        </li>
+        <li className="nav-item">
           <a className="nav-link active" href="#" onClick={()=>setPage('dashboard')}>Dashboard</a>
         </li>
         <li className="nav-item">

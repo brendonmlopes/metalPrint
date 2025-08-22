@@ -10,7 +10,7 @@ export default function BinaryBulb(props){
   let component = on ? <LightbulbIcon color={"warning"} /> : <LightbulbOutlineIcon color={"warning"}/>
   return(
     <>
-      <Box sx={{backgroundColor:'#999999', borderRadius:1}}>
+      <Box sx={{backgroundColor:on ? '#38ad14' : '#cc1111', borderRadius:1}}>
         <div className="mt-2">
           <span className="mt-1 h4">{title}</span>
             {component}

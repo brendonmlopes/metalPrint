@@ -9,6 +9,7 @@ import Home from './pages/Home.js';
 import Settings from './pages/Settings.js';
 import Simulator from './pages/Simulator.js';
 import Dashboard from './pages/Dashboard.js';
+import Sensor from './pages/Sensor.js';
 
 function App() {
   let pages = {
@@ -16,6 +17,7 @@ function App() {
     'settings':Settings,
     'dashboard':Dashboard,
     'simulator':Simulator,
+    'sensor':Sensor,
   }
 
   useEffect(()=>{
