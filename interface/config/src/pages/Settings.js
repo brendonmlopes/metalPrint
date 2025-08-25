@@ -4,13 +4,15 @@ import React from 'react';
 import {useState} from 'react';
 
 import Box from '@mui/material/Box';
+import SensorsIcon from '@mui/icons-material/Sensors';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import LightbulbOutlineIcon from '@mui/icons-material/LightbulbOutline';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import Button from '@mui/material/Button';
+import Input from '@mui/material/Input';
 import ToggleController from '../components/ToggleController';
 import BinaryBulb from '../components/BinaryBulb';
-import Input from '@mui/material/Input';
+import ArrowController from '../components/ArrowController';
 
 
 export default function Settings(props) {
@@ -20,43 +22,64 @@ export default function Settings(props) {
 
       <div className="container container-fluid">
         <div className="row">
-          <div className="col-2">
-            <h2 className="animate__animated animate__bounce">Power motors</h2>
+          <div className="col-1">
+          </div>
+          <div className="col-2 rounded-top border d-flex justify-content-center">
+            <h2 className="animate__animated animate__bounce my-auto">Power motors</h2>
           </div>
 
-            <div className="col-3">
+            <div className="col-1">
             </div>
 
-            <div className="col-2">
-              <h2>Motor speed</h2>
-              <div className="bg-white rounded">
-                <Input />
-              </div>
+            <div className="col-3 border rounded-top d-flex justify-content-center">
+              <h2 className="animate__animated animate__bounce my-auto">Movement</h2>
             </div>
 
-            <div className="col-2">
+            <div className="col-1">
             </div>
 
-            <div className="col-3">
-              <h2 className="animate__animated animate__bounce mx-5">Connections</h2>
+            <div className="col-3 d-flex rounded-top border justify-content-center">
+              <h2 className="animate__animated animate__bounce mx-5 my-auto">Connections 
+                <Box>
+                  <Button variant="text"> <SensorsIcon /> </Button>
+                </Box>
+              </h2>
+
             </div>
         </div>
         <div className="row">
-          <div className="col-2">
+          <div className="col-1">
+          </div>
+          <div className="col-2 border rounded-bottom">
             <ToggleController title="All motors" control={[{title:'X'},{title:'Y 1'},{title:'Y 2'},{title:'Z 1'},{title:'Z 2'},{title:'Z 3'},{title:'Z 4'},]} fontSize={32} />
           </div>
 
-          <div className="col-8">
+          <div className="col-1">
           </div>
-          <div className="col-1 p-1">
+
+          <div className="col-3 pt-1 border rounded-bottom bg-dark">
+            <div className="bg-secondary rounded mx-5">
+              <Box sx={{backgroundColor:"#dddddd", borderRadius:1}}>
+                <Input color="secondary" type="number" placeholder="Movement speed (rpm)" sx={{ textAlign:'center'}}/>
+              </Box>
+              <ArrowController />
+            </div>
+          </div>
+
+          <div className="col-1">
+          </div>
+
+          <div className="col-3 px-5 bg-dark border rounded-bottom">
             <BinaryBulb on={false} title={"Power"} />
-          </div>
+            </div>
         </div>
       </div>
 
       <div className="container">
 
-        <div className="row">
+        <div className="row border">
+          <div className="col-5">
+          </div>
 
           <div className="col-2">
             <Button
@@ -70,10 +93,12 @@ export default function Settings(props) {
               Upload GCode
               <input type="file" style={{display:'None'}}></input>
             </Button>
-    </div>
+          </div>
 
+          <div className="col-5">
           </div>
         </div>
+      </div>
     </header>
   )
 }
