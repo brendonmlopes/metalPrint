@@ -33,10 +33,10 @@ export default function Sensor(props){
 
     //Numbers, measuring distance.
     //-1 means no connection
-    LsensorZ1Connect:-1,
+    LsensorZ1Connect:10,
     LsensorZ2Connect:-1,
     LsensorZ3Connect:-1,
-    LsensorZ4Connect:-1,
+    LsensorZ4Connect:1,
 
     energySourceConnect:false,
   })
@@ -46,72 +46,117 @@ export default function Sensor(props){
     <div className="App-header">
       <div className="App-header container container-lg py-1">
         <h1 className="animate__animated animate__bounce"> Sensors dashboard </h1>
-          <div className="m-4">
+          <div className="m-3">
+
             <div className="row flex-nowrap justify-content-center">
-
-              <div className="col-2 p-2">
-                <h4>Motors</h4>
-              </div>
-
-              <div className="col-4 p-2"></div>
-
-              <div className="col-2 p-2">
-                <h4>Stopper</h4>
-              </div>
-
-              <div className="col-3 py-2"></div>
-
-              <div className="col-2 p-2">
-                <h4>Leveling</h4>
-              </div>
-
-            </div>
-
-            <div className="row flex-nowrap justify-content-center border">
-
-              <div className="col-4 p-2">
-                <BinaryBulb data={state['motorX1Connect']} title={"MX 1"} />
-                <BinaryBulb data={state['motorX2Connect']} title={"MX 2"} />
+              <div className="col-4">
                 <BinaryBulb data={state['motorY1Connect']} title={"MY 1"} />
-                <BinaryBulb data={state['motorZ1Connect']} title={"MZ 1"} />
-                <BinaryBulb data={state['motorZ2Connect']} title={"MZ 2"} />
-                <BinaryBulb data={state['motorZ3Connect']} title={"MZ 3"} />
-                <BinaryBulb data={state['motorZ4Connect']} title={"MZ 4"} />
               </div>
+              <div className="col-4">
 
-              <div className="col-1 p-2">
               </div>
-
-              <div className="col-3 p-2">
-                <BinaryBulb data={state['Ssensor1X1Connect']} title={"SSX 1"} />
-                <BinaryBulb data={state['Ssensor2X1Connect']} title={"SSX 2"} />
-                <BinaryBulb data={state['Ssensor1X2Connect']} title={"SSX 3"} />
-                <BinaryBulb data={state['Ssensor2X2Connect']} title={"SSX 4"} />
+              <div className="col-4">
                 <BinaryBulb data={state['Ssensor1Y1Connect']} title={"SSY 1"} />
+              </div>
+              <div className="col-4">
                 <BinaryBulb data={state['Ssensor2Y1Connect']} title={"SSY 2"} />
               </div>
-
-              <div className="col-3 p-2">
-                <BinaryBulb data={state['Ssensor1Z1Connect']} title={"SSZ 1"} />
-                <BinaryBulb data={state['Ssensor2Z1Connect']} title={"SSZ 2"} />
-                <BinaryBulb data={state['Ssensor1Z2Connect']} title={"SSZ 3"} />
-                <BinaryBulb data={state['Ssensor2Z2Connect']} title={"SSZ 4"} />
-                <BinaryBulb data={state['Ssensor1Z3Connect']} title={"SSZ 5"} />
-                <BinaryBulb data={state['Ssensor2Z3Connect']} title={"SSZ 6"} />
-                <BinaryBulb data={state['Ssensor1Z4Connect']} title={"SSZ 7"} />
-                <BinaryBulb data={state['Ssensor2Z4Connect']} title={"SSZ 8"} />
-              </div>
-
-              <div className="col-1 p-2">
-              </div>
-
-              <div className="col-3 p-2">
+              <div className="col-4">
                 <BinaryBulb data={state['LsensorZ1Connect']} title={"LSZ 1"} />
+              </div>
+            </div>
+
+
+            <div className="row flex-nowrap justify-content-center">
+              <div className="col-4">
+                <BinaryBulb data={state['motorX1Connect']} title={"MX 1"} />
+              </div>
+              <div className="col-4">
+                <BinaryBulb data={state['motorX2Connect']} title={"MX 2"} />
+              </div>
+              <div className="col-4">
+                <BinaryBulb data={state['Ssensor1X1Connect']} title={"SSX 1"} />
+              </div>
+              <div className="col-4">
+                <BinaryBulb data={state['Ssensor2X1Connect']} title={"SSX 2"} />
+              </div>
+              <div className="col-4">
                 <BinaryBulb data={state['LsensorZ2Connect']} title={"LSZ 2"} />
+              </div>
+            </div>
+
+            <div className="row flex-nowrap justify-content-center">
+              <div className="col-4">
+                <BinaryBulb data={state['motorZ1Connect']} title={"MZ 1"} />
+              </div>
+              <div className="col-4">
+                <BinaryBulb data={state['motorZ2Connect']} title={"MZ 2"} />
+              </div>
+              <div className="col-4">
+                <BinaryBulb data={state['Ssensor1X2Connect']} title={"SSX 3"} />
+              </div>
+              <div className="col-4">
+                <BinaryBulb data={state['Ssensor2X2Connect']} title={"SSX 4"} />
+              </div>
+              <div className="col-4">
                 <BinaryBulb data={state['LsensorZ3Connect']} title={"LSZ 3"} />
+              </div>
+            </div>
+
+
+            <div className="row flex-nowrap justify-content-center">
+              <div className="col-4">
+                <BinaryBulb data={state['motorZ3Connect']} title={"MZ 3"} />
+              </div>
+              <div className="col-4">
+                <BinaryBulb data={state['motorZ4Connect']} title={"MZ 4"} />
+              </div>
+              <div className="col-4">
+                <BinaryBulb data={state['Ssensor1Z1Connect']} title={"SSZ 1"} />
+              </div>
+              <div className="col-4">
+                <BinaryBulb data={state['Ssensor2Z1Connect']} title={"SSZ 2"} />
+              </div>
+              <div className="col-4">
                 <BinaryBulb data={state['LsensorZ4Connect']} title={"LSZ 4"} />
               </div>
+            </div>
 
+            <div className="row flex-nowrap justify-content-center">
+              
+              <div className="col-4">
+              </div>
+
+              <div className="col-4">
+                <BinaryBulb data={state['Ssensor1Z2Connect']} title={"SSZ 3"} />
+              </div>
+              <div className="col-4">
+                <BinaryBulb data={state['Ssensor2Z2Connect']} title={"SSZ 4"} />
+              </div>
+            </div>
+
+
+            <div className="row flex-nowrap justify-content-center">
+              <div className="col-4">
+              </div>
+              <div className="col-4">
+                <BinaryBulb data={state['Ssensor1Z3Connect']} title={"SSZ 5"} />
+              </div>
+              <div className="col-4">
+                <BinaryBulb data={state['Ssensor2Z3Connect']} title={"SSZ 6"} />
+              </div>
+            </div>
+
+
+            <div className="row flex-nowrap justify-content-center">
+              <div className="col-4">
+              </div>
+              <div className="col-4">
+                <BinaryBulb data={state['Ssensor1Z4Connect']} title={"SSZ 7"} />
+              </div>
+              <div className="col-4">
+                <BinaryBulb data={state['Ssensor2Z4Connect']} title={"SSZ 8"} />
+              </div>
             </div>
           </div>
         </div>

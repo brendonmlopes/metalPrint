@@ -70,14 +70,14 @@ export default function Settings(props) {
           </div>
 
           <div className="col-3 px-5 bg-dark border rounded-bottom">
-            <BinaryBulb on={false} title={"Power"} />
+            <BinaryBulb data={true} title={"Power"} />
             </div>
         </div>
       </div>
 
       <div className="container">
 
-        <div className="row border">
+        <div className="row">
           <div className="col-5">
           </div>
 
