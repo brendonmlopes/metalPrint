@@ -3,7 +3,7 @@ import BinaryBulb from '../components/BinaryBulb';
 
 export default function Sensor(props){
   let [state, setState] = useState({
-    //0 : turned off( no signal at all)
+    //0 : turned off( no signal at all )
     //1 : turned on( no signal from the sensors )
     //2 : turned on( signal + from the sensor )
     //3 : turned on( signal - from the sensor )
@@ -19,7 +19,7 @@ export default function Sensor(props){
     Ssensor2X1Connect:1,
     Ssensor1X2Connect:3,
     Ssensor2X2Connect:2,
-    Ssensor1Y1Connect:0,
+    Ssensor1Y1Connect:1,
     Ssensor2Y1Connect:3,
 
     Ssensor1Z1Connect:1,
@@ -33,10 +33,10 @@ export default function Sensor(props){
 
     //Numbers, measuring distance.
     //-1 means no connection
-    LsensorZ1Connect:10,
-    LsensorZ2Connect:-1,
+    LsensorZ1Connect:10.23,
+    LsensorZ2Connect:10.21,
     LsensorZ3Connect:-1,
-    LsensorZ4Connect:1,
+    LsensorZ4Connect:11.37,
 
     energySourceConnect:false,
   })

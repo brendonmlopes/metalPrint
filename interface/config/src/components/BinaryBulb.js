@@ -14,7 +14,7 @@ export default function BinaryBulb(props){
   //For motor sensors or stopper sensors
   if(title.startsWith("M") || title.startsWith("SS")){
     if (data===0) {
-      color = "#ffad14"
+      color = "#ff2222"
       colorPlus = "#808688"
       colorMinus = "#808688"
     } else if(data===1){
@@ -35,6 +35,7 @@ export default function BinaryBulb(props){
   } else if (title.startsWith("LS")){
     if(data<=0){
       color = "#ff2222"
+      data = "Error"
     }else{
       color = "#38ad14"
     }
