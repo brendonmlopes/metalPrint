@@ -14,7 +14,7 @@ function draw() {
   if(spacebarIsPressed) {
     noLoop();
   }
-  background(200);
+  background(0);
   orbitControl();
   ambientLight(150);
   directionalLight(255, 255, 255, 0, -1, 0);
