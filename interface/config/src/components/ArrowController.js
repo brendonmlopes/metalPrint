@@ -51,22 +51,27 @@ export default function ArrowController(){
     
         <div className="col-4">
         </div>
+      </div>
+
+      <div className="row">
+        <div className="col" style={{height:'10px'}}>
+        </div>
+      </div>
 
       <div className="row">
         <div className="col-4 bg-black border rounded d-flex justify-content-center align-items-center">
           <Button>       
-            <ArrowUpwardIcon sx={{transform:'rotate(180deg)'}}/>
+            <ArrowUpwardIcon />
           </Button>
         </div>
         <div className="col-4">
         </div>
-          <div className="col-4 bg-black border rounded d-flex justify-content-center align-items-center">
+        <div className="col-4 bg-black border rounded d-flex justify-content-center align-items-center">
           <Button>       
             <ArrowUpwardIcon sx={{transform:'rotate(180deg)'}}/>
           </Button>
         </div>
       </div>
     </div>
-  </div>
   )
 }
