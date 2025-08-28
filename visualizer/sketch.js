@@ -1,7 +1,9 @@
 let head;
 let order = 1;
 let currentOrder = 1;
+let on = true;
 const threshold = 1;
+
 
 function setup() {
   createCanvas(windowWidth, windowHeight, WEBGL);
@@ -14,19 +16,30 @@ function draw() {
   if(spacebarIsPressed) {
     noLoop();
   }
-  background(200);
+
+  background(0);
   orbitControl();
   ambientLight(150);
   directionalLight(255, 255, 255, 0, -1, 0);
-  pointLight(255, 255, 255, head.x,-100 , head.y);
+  pointLight(255, 255, 255, head.x,-1 , head.y);
   specularMaterial(250);
-  shininess(50);
-  
+  shininess(100);
+ 
+  rotateX(-PI/4)
+
   //table
   push();
-    translate(0, 10, 0);
+    translate(-400, 10, -400);
     fill(150);
-    box(10000, 2, 10000);
+    stroke(0);
+    for(let i = -10 ; i < 10 ; i++){
+      translate(0,0,60)
+      for(let j = -10 ; j < 10 ; j++){
+        translate(40,0,0)
+        box(40,2,40);
+      }
+      translate(-800,0,-20)
+    }
   pop()
   rotateX(HALF_PI);
   head.display();
@@ -36,7 +49,7 @@ function draw() {
     fill('blue')
     //box(100,100,100);
   pop();
-  head.moveTo(80,100,1);
+  head.moveTo(300,100,1);
   head.moveTo(10,800,2);
   head.moveTo(40,400,3);
   head.moveTo(90,300,4);
@@ -68,8 +81,9 @@ class Head{
       fill('red');
     }
     push()
-      translate(this.x, this.y);
-      sphere(this.size);
+      translate(this.x, this.y,50);
+      rotateX(-HALF_PI);
+      cone(20,100)
       point(this.x, this.y);
     pop();
   }
