@@ -17,7 +17,7 @@ function App() {
     'settings':Settings,
     'dashboard':Dashboard,
     'simulator':Simulator,
-    'sensor':Sensor,
+    'sensors':Sensor,
   }
 
   useEffect(()=>{

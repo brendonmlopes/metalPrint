@@ -12,8 +12,15 @@ export default function Home(props) {
       <header className="App-header">
         <img src={logo} className="logo animate__animated animate__backInDown" alt="logo" />
           <h1 className="animate__animated animate__pulse animate__slower"> Printer Central </h1>
-        <div className="animate__animated breathe animate__slower">
-          <Button className="animate__animated  breathe my-5" onClick={()=>setPage('settings')} variant="contained"> Settings </Button>
+        <div className="animate__animated animate__slower">
+          <Button className="animate__animated  breathe my-5 mx-3" onClick={()=>setPage('settings')} variant="contained"> Settings 
+          </Button>
+          <Button className="animate__animated  breathe my-5 mx-3" onClick={()=>setPage('sensors')} variant="contained"> Sensors 
+          </Button>
+          <Button className="animate__animated  breathe my-5 mx-3" onClick={()=>setPage('dashboard')} variant="contained"> Dashboard 
+          </Button>
+          <Button className="animate__animated  breathe my-5 mx-3" onClick={()=>setPage('simulator')} variant="contained"> Simulator 
+          </Button>
         </div>
         <div>
         </div>
