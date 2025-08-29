@@ -16,7 +16,7 @@ export default function Dashboard(props){
 
   return (
     <div className="App-header">
-      <div clasname="animate__animated animate__bounce">
+      <div className="animate__animated animate__bounce mb-5">
         <h1>Dashboard</h1>
       </div>
       
