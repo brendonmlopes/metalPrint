@@ -2,6 +2,7 @@ import '../App.css';
 import 'animate.css';
 import React from 'react';
 import {useState} from 'react';
+import {useEffect} from 'react';
 
 import Box from '@mui/material/Box';
 import SensorsIcon from '@mui/icons-material/Sensors';
@@ -14,8 +15,17 @@ import ToggleController from '../components/ToggleController';
 import BinaryBulb from '../components/BinaryBulb';
 import ArrowController from '../components/ArrowController';
 
-
 export default function Settings(props) {
+  useEffect(async ()=>{
+    const data = await fetch("http://localhost:3001/api/test",{
+      method:"GET",
+      headers:{
+        "Content-Type":"application/json",
+        "Access-Control-Allow-Origin":"http://localhost:3000",
+      },
+    })
+    let jsonData = await data.json()
+  },[])
 
   return(
     <header className="App-header">
@@ -87,7 +97,6 @@ export default function Settings(props) {
               role={undefined}
               variant="contained"
               tabIndex={-1}
-              onClick={console.log("Click")}
               startIcon={<CloudUploadIcon />}
             >
               Upload GCode
