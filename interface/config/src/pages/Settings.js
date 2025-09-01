@@ -25,21 +25,21 @@ export default function Settings(props) {
           <div className="col-1">
           </div>
           <div className="col-2 rounded-top border d-flex justify-content-center">
-            <h2 className="animate__animated animate__bounce my-auto">Power motors</h2>
+            <h2 className="animate__animated animate__bounceIn my-auto">Power motors</h2>
           </div>
 
             <div className="col-1">
             </div>
 
             <div className="col-3 border rounded-top d-flex justify-content-center">
-              <h2 className="animate__animated animate__bounce my-auto">Movement</h2>
+              <h2 className="animate__animated animate__bounceIn my-auto">Movement</h2>
             </div>
 
             <div className="col-1">
             </div>
 
             <div className="col-3 d-flex rounded-top border justify-content-center">
-              <h2 className="animate__animated animate__bounce mx-5 my-auto">Connections 
+              <h2 className="animate__animated animate__bounceIn mx-5 my-auto">Connections 
                 <Box>
                   <Button variant="text"> <SensorsIcon /> </Button>
                 </Box>

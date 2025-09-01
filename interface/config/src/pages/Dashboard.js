@@ -16,7 +16,7 @@ export default function Dashboard(props){
 
   return (
     <div className="App-header">
-      <div className="animate__animated animate__bounce mb-5">
+      <div className="animate__animated animate__bounceIn mb-5">
         <h1>Dashboard</h1>
       </div>
       
@@ -25,7 +25,7 @@ export default function Dashboard(props){
       </div>
 
       <div className="border rounded px-3">
-        <div className="row" style={{width:paneWidth+'rem'}}>
+        <div className="row animate__animated animate__bounceIn animate__delay-1s" style={{width:paneWidth+'rem'}}>
 
           <div className="col-4">
             <p>X</p>
@@ -39,13 +39,13 @@ export default function Dashboard(props){
         </div>
 
         <div className="row" style={{width:paneWidth+'rem'}}>
-          <div className="col-4 border-end border-top">
+          <div className="col-4 border-end border-top animate__animated animate__bounceIn animate__delay-2s">
             <p>{pos.x}</p>
           </div>
-          <div className="col-4 border-end border-top">
+          <div className="col-4 border-end border-top animate__animated animate__bounceIn animate__delay-3s">
             <p>{pos.y}</p>
           </div>
-          <div className="col-4 border-top">
+          <div className="col-4 border-top animate__animated animate__bounceIn animate__delay-4s">
             <p>{pos.z}</p>
           </div>
         </div>

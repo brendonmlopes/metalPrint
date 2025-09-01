@@ -10,7 +10,7 @@ export default function Home(props) {
 
   return (
       <header className="App-header">
-        <img src={logo} className="logo animate__animated animate__backInDown" alt="logo" />
+        <img src={logo} style={{width:'40vw', filter:'blur(1px)'}} className="logo animate__animated animate__backInDown" alt="logo" />
           <h1 className="animate__animated animate__pulse animate__slower"> Printer Central </h1>
         <div className="animate__animated animate__slower">
           <Button className="animate__animated  breathe my-5 mx-3" onClick={()=>setPage('settings')} variant="contained"> Settings 

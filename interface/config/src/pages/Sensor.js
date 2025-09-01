@@ -45,7 +45,7 @@ export default function Sensor(props){
   return (
     <div className="App-header">
       <div className="App-header container container-lg py-1">
-        <h1 className="animate__animated animate__bounce m-3"> Sensors dashboard </h1>
+        <h1 className="animate__animated animate__bounceIn m-3"> Sensors dashboard </h1>
           <div className="m-3">
 
             <div className="row flex-nowrap justify-content-center mt-3">
