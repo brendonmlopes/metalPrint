@@ -1,12 +1,9 @@
-import { useState } from 'react'
 import 'animate.css'
-// Grid.js
 import React from "react";
 
 function Square({ active }) {
   return (
     <div
-      className="animate__animated animate__bounceIn"
       style={{
         width: 10,
         height: 10,

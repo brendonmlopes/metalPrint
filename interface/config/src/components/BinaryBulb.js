@@ -17,20 +17,23 @@ export default function BinaryBulb(props){
       color = "#ff2222"
       colorPlus = "#808688"
       colorMinus = "#808688"
+      component = <LightbulbOutlineIcon sx={{color:"#ffad14"}}/>
     } else if(data===1){
       color = "#38ad14"
       colorPlus = "#808688"
       colorMinus = "#808688"
+      component = <LightbulbIcon sx={{color:"#ffad14"}}/>
     } else if(data===2){
       color = "#38ad14"
       colorPlus = "#38ad14"
       colorMinus = "#808688"
+      component = <LightbulbIcon sx={{color:"#ffad14"}}/>
     } else if(data===3){
       color = "#38ad14"
       colorPlus = "#808688"
       colorMinus = "#38ad14"
+      component = <LightbulbIcon sx={{color:"#ffad14"}}/>
     }
-    component = <LightbulbIcon sx={{color:"#ffad14"}}/>
   //For levelling sensors
   } else if (title.startsWith("LS")){
     if(data<=0){
@@ -74,7 +77,6 @@ export default function BinaryBulb(props){
       throw new Error("The bulb type isn't M, L, S or Power")
     }
   }
-
 
   return(
     <>
