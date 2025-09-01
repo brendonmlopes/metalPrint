@@ -32,7 +32,7 @@ export default function NavBar(props){
           <a className="nav-link active" href="#" onClick={()=>setPage('dashboard')}>Dashboard</a>
         </li>
         <li className="nav-item">
-          <a className="nav-link active" href="#" onClick={()=>setPage('simulator')}>Simulator</a>
+          <a className="nav-link active" href="visualizer" onClick={()=>setPage('simulator')}>Simulator</a>
         </li>
       </ul>
     </div>
