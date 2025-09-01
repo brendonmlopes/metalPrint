@@ -5,12 +5,12 @@ import Box from '@mui/material/Box';
 export default function BinaryBulb(props){
   let title = props.title
   let data = props.data
-
+  
   let color;
   let colorPlus;
   let colorMinus;
   let component;
-
+  
   //For motor sensors or stopper sensors
   if(title.startsWith("M") || title.startsWith("SS")){
     if (data===0) {
@@ -44,7 +44,7 @@ export default function BinaryBulb(props){
   } else {
     throw new Error("The bulb type isn't M, L, S or Power")
   }
-
+  
   function Signal(params){
     if(title.startsWith("M") || title.startsWith("S")){
       return(
@@ -60,7 +60,7 @@ export default function BinaryBulb(props){
     } else if (title.startsWith("L")){
       return(
         <div>
-          <Box sx={{borderTop:1,backgroundColor:"#222222", borderRadius:1}}>
+          <Box sx={{borderTop:1,backgroundColor:"#111111", borderRadius:1}}>
             <span>{data}</span>
           </Box>
         </div>
