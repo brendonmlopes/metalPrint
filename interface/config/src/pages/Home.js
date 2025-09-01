@@ -19,7 +19,7 @@ export default function Home(props) {
           </Button>
           <Button className="animate__animated  breathe my-5 mx-3" onClick={()=>setPage('dashboard')} variant="contained"> Dashboard 
           </Button>
-          <Button className="animate__animated  breathe my-5 mx-3" onClick={()=>setPage('simulator')} variant="contained"> Simulator 
+          <Button className="animate__animated  breathe my-5 mx-3" href="visualizer" onClick={()=>setPage('simulator')} variant="contained"> Simulator 
           </Button>
         </div>
         <div>
