@@ -49,20 +49,21 @@ export default function Sensor(props){
           <div className="m-3">
 
             <div className="row flex-nowrap justify-content-center mt-3">
-              <div className="col-4 animate__animated animate__bounceIn animate__delay-1s">
+              <div className="col-4 me-3 border rounded animate__animated animate__bounceIn animate__delay-1s">
                 <h2>Motors</h2>
               </div>
-              <div className="col-4">
+              <div className="col-4 ms-3">
               </div>
-              <div className="col-4 animate__animated animate__bounceIn animate__delay-2s">
+              <div className="col-4 me-3 border rounded animate__animated animate__bounceIn animate__delay-2s">
                 <h2>Stoppers</h2>
               </div>
-              <div className="col-4">
+              <div className="col-4 me-3">
               </div>
-              <div className="col-4 animate__animated animate__bounceIn animate__delay-3s">
+              <div className="col-4 border rounded animate__animated animate__bounceIn animate__delay-3s">
                 <h2>Levelling</h2>
               </div>
             </div>
+
             <div className="row flex-nowrap justify-content-center mt-3">
               <div className="col-4 pt-1 border-top border-start rounded-top rounded-end-0 rounded-bottom-0 bg-dark">
                 <BinaryBulb data={state['motorY1Connect']} title={"MY 1"} />

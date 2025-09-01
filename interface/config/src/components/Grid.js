@@ -12,7 +12,7 @@ function Square({ active }) {
         height: 10,
         backgroundColor: active ? "lime" : "#666666",
         border: "1px solid #333333",
-        borderRadius:10
+        borderRadius:3
       }}
     />
   );
@@ -20,7 +20,7 @@ function Square({ active }) {
 
 export default function Grid({ pos, rows = 50, cols = 50 }) {
   return (
-    <div className="mb-5">
+    <div className="mb-5 border rounded p-3">
       {Array.from({ length: rows }).map((_, rowIndex) => (
         <div key={rowIndex} style={{ display: "flex" }}>
           {Array.from({ length: cols }).map((_, colIndex) => {
