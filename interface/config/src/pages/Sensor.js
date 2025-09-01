@@ -38,6 +38,9 @@ export default function Sensor(props){
     LsensorZ3Connect:-1,
     LsensorZ4Connect:11.37,
 
+    LsensorX1Connect:20.31,
+    LsensorX2Connect:20.82,
+
     energySourceConnect:false,
   })
 
@@ -77,8 +80,11 @@ export default function Sensor(props){
               <div className="col-4 pt-2 me-3 border-end border-top bg-dark" style={{borderTopRightRadius:7}}>
                 <BinaryBulb data={state['Ssensor2Y1Connect']} title={"SSY 2"} />
               </div>
-              <div className="col-4 ms-3 border-start border-top border-end pt-2 bg-dark" style={{borderTopRightRadius:7, borderTopLeftRadius:7}}>
+              <div className="col-4 ms-3 border-start border-top pt-2 bg-dark" style={{borderTopLeftRadius:7}}>
                 <BinaryBulb data={state['LsensorZ1Connect']} title={"LSZ 1"} />
+              </div>
+              <div className="col-4 border-top border-end pt-2 bg-dark" style={{borderTopRightRadius:7}}>
+                <BinaryBulb data={state['LsensorX1Connect']} title={"LSX 1"} />
               </div>
             </div>
 
@@ -95,8 +101,11 @@ export default function Sensor(props){
               <div className="col-4 me-3 border-end bg-dark">
                 <BinaryBulb data={state['Ssensor2X1Connect']} title={"SSX 2"} />
               </div>
-              <div className="col-4 ms-3 border-start border-end bg-dark">
+              <div className="col-4 ms-3 border-start bg-dark">
                 <BinaryBulb data={state['LsensorZ2Connect']} title={"LSZ 2"} />
+              </div>
+              <div className="col-4 border-end bg-dark">
+                <BinaryBulb data={state['LsensorX2Connect']} title={"LSX 2"} />
               </div>
             </div>
 
@@ -113,8 +122,10 @@ export default function Sensor(props){
               <div className="col-4 me-3 border-end bg-dark">
                 <BinaryBulb data={state['Ssensor2X2Connect']} title={"SSX 4"} />
               </div>
-              <div className="col-4 ms-3 border-start border-end bg-dark">
+              <div className="col-4 ms-3 border-start bg-dark">
                 <BinaryBulb data={state['LsensorZ3Connect']} title={"LSZ 3"} />
+              </div>
+              <div className="col-4 border-end bg-dark">
               </div>
             </div>
 
@@ -132,8 +143,10 @@ export default function Sensor(props){
               <div className="col-4 me-3 border-end bg-dark">
                 <BinaryBulb data={state['Ssensor2Z1Connect']} title={"SSZ 2"} />
               </div>
-              <div className="col-4 ms-3 border-start border-end border-bottom rounded-bottom bg-dark">
+              <div className="col-4 ms-3 border-start border-bottom bg-dark" style={{borderBottomLeftRadius:7}}>
                 <BinaryBulb data={state['LsensorZ4Connect']} title={"LSZ 4"} />
+              </div>
+              <div className="col-4 border-bottom border-end bg-dark" style={{borderBottomRightRadius:7}}>
               </div>
             </div>
 
@@ -148,6 +161,8 @@ export default function Sensor(props){
               <div className="col-4 me-3 border-end bg-dark">
                 <BinaryBulb data={state['Ssensor2Z2Connect']} title={"SSZ 4"} />
               </div>
+              <div className="col-4">
+              </div>
             </div>
 
 
@@ -160,6 +175,8 @@ export default function Sensor(props){
               <div className="col-4 me-3 border-end bg-dark">
                 <BinaryBulb data={state['Ssensor2Z3Connect']} title={"SSZ 6"} />
               </div>
+              <div className="col-4">
+              </div>
             </div>
 
 
@@ -171,6 +188,8 @@ export default function Sensor(props){
               </div>
               <div className="col-4 me-3 border-bottom border-end bg-dark" style={{borderBottomRightRadius:7}}>
                 <BinaryBulb data={state['Ssensor2Z4Connect']} title={"SSZ 8"} />
+              </div>
+              <div className="col-4">
               </div>
             </div>
           </div>

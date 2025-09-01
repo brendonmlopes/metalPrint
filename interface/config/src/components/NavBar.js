@@ -14,20 +14,19 @@ export default function NavBar(props){
   let simulator = {page:'simulator',active:false}
   let pages = [home,settings,sensors,dashboard,simulator]
   for(let page of pages){
-    if(state.page==page.page){
+    if(state.page===page.page){
       page.active = true
     }else{
       page.active = false
     }
   }
-  console.log(pages)
 
   return (
     <div className="NavBar">
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
       <a className="navbar-brand" onClick={()=>setPage('home')} href="">
-        <img className="animate__animated animate__bounceIn" style={{height:'10vh'}} src={logo}></img>
+        <img className="animate__animated animate__bounceIn" style={{height:'10vh'}} src={logo} alt="LNTSOLD Logo"></img>
     </a>
       <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
