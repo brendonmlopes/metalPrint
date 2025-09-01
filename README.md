@@ -1,63 +1,80 @@
 # metalPrint
 
-metalPrint is a project designed to provide tools, code, and resources for metal 3D printing using Arduino/RaspberryPi-based hardware control.
-This project aims to simplify the process of controlling metal 3D printers by providing a modular and extensible codebase that can be adapted for various hardware configurations.
+**metalPrint** is an open-source software suite for controlling stepper motors and a torch (current, voltage, etc.) for a metal 3D printer. It includes CLI tools, sensor data parsing, visualization, and a non-technical user interface.
 
-## Features
+---
 
-- Open-source code for controlling metal 3D printing hardware
-- Arduino integration for hardware interfacing
-- Modular design for expandability
-- Example configurations and scripts for metal printing workflows
+## Project Structure Overview
+
+### `interface/`
+Contains user interfaces (CLI and graphical), visualization tools, and configuration management utilities. These components allow users to interact with the printer, monitor print progress, and adjust hardware settings.
+
+#### `interface/config/visualizer`
+A specialized module for rendering parsed configuration and live sensor data. It provides interactive or static visualizations of hardware states and print progress, making system status intuitive for users.
+
+### `parser.c`
+The parser.c file is responsible for reading and interpreting G-code files, the standard for 3D printing instructions. It translates G-code into commands and data structures that describe motor movements and printing actions.
+
+- **G-code Parsing:** Reads G-code commands and converts them into actionable instructions.
+- **Translation Layer:** Maps parsed instructions to hardware operations executed by the Arduino logic.
+
+### `motor.ino` and `motor.h`
+`motor.ino` is the Arduino sketch that directly controls the stepper motors and torch hardware. It receives commands from the parsed G-code (via parser.c), and uses functions defined in `motor.h` for hardware abstraction.
+
+- **moveTo(xTarget, yTarget):** Moves X/Y stepper motors to target positions, synchronizing arrival.
+- **findPos(xTarget, yTarget, zTarget):** Moves all axes to specified positions, with Z-axis retraction and elevation.
+- **Integration:** Receives motor instructions translated from G-code, executes physical movements.
+
+---
+
+## Data Flow
+
+1. **G-code Input:** User provides G-code file with printing instructions.
+2. **Parsing:** `parser.c` reads G-code, translates it into motor movement commands.
+3. **Execution:** `motor.ino` receives movement instructions, calls functions from `motor.h` to move hardware.
+4. **User Interface:** `interface` modules allow the user to monitor and control the process, visualize status, and adjust configurations.
+
+---
 
 ## Getting Started
 
 ### Prerequisites
-To get started with metalPrint, you will need the following software and hardware:
-- Arduino IDE (download from [arduino.cc](https://www.arduino.cc/en/software))
-- Compatible Arduino board (such as Arduino Uno, Mega, Nano, etc.)
-- Raspberry Pi (To come)
-- USB cable for programming Arduino
-- Basic electronics components (wires, breadboard, sensors, actuators as required for your setup)
+- **Arduino IDE** ([Download](https://www.arduino.cc/en/software))
+- **Arduino Board** (Uno, Mega, Nano, etc.)
+- **USB Cable** for uploading firmware
+- **Basic Electronics** (wires, breadboard, sensors, actuators)
 
 ### Installation
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/brendonmlopes/metalPrint.git
+   ```
+2. Open the Arduino project in the IDE.
+3. Connect your hardware according to your configuration.
+4. Upload the firmware.
 
-#### 1. Clone the repository:
-```bash
-git clone https://github.com/brendonmlopes/metalPrint.git
-cd metalPrint
-gcc build.c -o build
-./build
-```
-
-## Function Explanations
-
-[![VIDEO](https://img.youtube.com/vi/N0WeOvSnrz4/0.jpg)](https://www.youtube.com/watch?v=N0WeOvSnrz4)
-### `moveTo(xTarget, yTarget)`
-
-Moves the stepper motors for the X and Y axes to the target positions specified by `xTarget` and `yTarget` (in steps). The function calculates the distance to move in each direction and steps each motor incrementally until the position is within a defined threshold of the target. It uses buffers to proportionally step each motor so both axes reach their targets at the same time, printing messages to the serial monitor when each axis is on target.
-
-### `findPos(xTarget, yTarget, zTarget)`
-
-Moves all three stepper motors (X, Y, and Z) to the specified target positions. First, it retracts the Z axis to its lowest position. Then, it moves the X and Y axes to their targets, printing the current position and difference from the target for each axis to the serial monitor. Finally, it moves the Z axis up to the specified target position and confirms when the Z axis is on target.
+---
 
 ## Contributing
 
-Contributions, issues, and feature requests are welcome.  
-Check the [issues page](https://github.com/brendonmlopes/metalPrint/issues).
+Contributions, issues, and feature requests are welcome!  
+See the [issues page](https://github.com/brendonmlopes/metalPrint/issues).
 
-1. Fork the repository
+1. Fork this repository
 2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
 3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+5. Create a pull request
+
+---
 
 ## License
 
-Distributed under the [MIT License](LICENSE).  
-See `LICENSE` for more information.
+Distributed under the MIT License. See `LICENSE` for details.
+
+---
 
 ## Contact
 
-- Author: [brendonmlopes](https://github.com/brendonmlopes)
-- Project Link: [https://github.com/brendonmlopes/metalPrint](https://github.com/brendonmlopes/metalPrint)
+- **Author:** [brendonmlopes](https://github.com/brendonmlopes)
+- **Project URL:** [https://github.com/brendonmlopes/metalPrint](https://github.com/brendonmlopes/metalPrint)
