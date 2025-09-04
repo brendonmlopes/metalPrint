@@ -1,5 +1,6 @@
 resources
 build
 parser
-tests/g1.out
-
+interface/config/node_modules
+interface/server/node_modules
+interface/server/.next

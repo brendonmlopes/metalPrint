@@ -41,6 +41,8 @@ export default function Sensor(props){
     LsensorX1Connect:20.31,
     LsensorX2Connect:20.82,
 
+    LsensorY1Connect:2.74,
+
     energySourceConnect:false,
   })
 
@@ -126,6 +128,7 @@ export default function Sensor(props){
                 <BinaryBulb data={state['LsensorZ3Connect']} title={"LSZ 3"} />
               </div>
               <div className="col-4 border-end bg-dark">
+                <BinaryBulb data={state['LsensorY1Connect']} title={"LSY 1"} />
               </div>
             </div>
 

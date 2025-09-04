@@ -1,4 +1,4 @@
-header: only write lowercase letters, unless it's a command like W2, which sets weldFlow=2
+header: only write lowercase letters, unless it's a command like W2, which sets wireFeedSpeed=2
 G0 X10 Y10 Z10
 G0 X10 Y10 Z0
 ;This is a comment

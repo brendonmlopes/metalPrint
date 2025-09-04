@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
   int lineIdx = 0;
   int commentCount = 0;
   char line[512];
-  float weldFlow = 0.0;
+  float wireFeedSpeed = 0.0;
   if(strcmp(mode,"-v")==0){
     printf("G-code Parser\n");
   } 
@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
       for(int i=0 ; i < sizeof(line) / sizeof(line[0]); i++){
         if(line[i] == 'W'){
           //atof converts the string to a float
-          weldFlow = atof(&line[i+1]);
+          wireFeedSpeed = atof(&line[i+1]);
         }
       }
       lineIdx++;
@@ -84,13 +84,13 @@ int main(int argc, char *argv[])
         // The format is G0 X<value> Y<value> Z<value>
         if(cmd[1] == '0'){
           sscanf(line, "G0 X%d Y%d Z%d", &x, &y, &z);
-          fprintf(out, "moveTo(%d,%d,%d,%f);\n", x, y, z, weldFlow);
+          fprintf(out, "moveTo(%d,%d,%d,%f);\n", x, y, z, wireFeedSpeed);
         }
 
         // The format is G1 X<value> Y<value> Z<value>
         if(cmd[1] == '1'){
           sscanf(line, "G1 X%d Y%d Z%d", &x, &y, &z);
-          fprintf(out, "weldTo(%d,%d,%d,%f);\n", x, y, z, weldFlow);
+          fprintf(out, "weldTo(%d,%d,%d,%f);\n", x, y, z, wireFeedSpeed);
         }
 
         // The format is G2 X<value> Y<value> R<value>
@@ -98,7 +98,7 @@ int main(int argc, char *argv[])
           int r;
           int clockwise = 1; // 1 for clockwise, 0 for counterclockwise
           sscanf(line, "G2 X%d Y%d R%d", &x, &y, &r);
-          fprintf(out, "arcTo(%d,%d,%d,%d,%f);\n", x, y, r, clockwise, weldFlow);
+          fprintf(out, "arcTo(%d,%d,%d,%d,%f);\n", x, y, r, clockwise, wireFeedSpeed);
         }
 
         // The format is G3 X<value> Y<value> R<value>
@@ -106,7 +106,7 @@ int main(int argc, char *argv[])
           int r;
           int clockwise = 0; // 1 for clockwise, 0 for counterclockwise
           sscanf(line, "G3 X%d Y%d R%d", &x, &y, &r);
-          fprintf(out, "arcTo(%d,%d,%d,%d,%f);\n", x, y, r, clockwise, weldFlow);
+          fprintf(out, "arcTo(%d,%d,%d,%d,%f);\n", x, y, r, clockwise, wireFeedSpeed);
         }
         if(strcmp(mode,"-v")==0){
             printf("Writing G%d command to output\n", cmd);
@@ -121,7 +121,7 @@ int main(int argc, char *argv[])
     printf("________________________________________\n");
     printf("Lines processed:\t\t%d\n", lineIdx+1);
     printf("Commands found:\t\t\t%d\n", lineIdx-commentCount);
-    printf("Weld flow rate:\t\t\t%f\n", weldFlow);
+    printf("Weld flow rate:\t\t\t%f\n", wireFeedSpeed);
     printf("________________________________________\n");
     printf("Output written to motor/motor.ino\n");
   }

@@ -22,8 +22,6 @@ export default function Home(props) {
           <Button className="animate__animated breathe my-5 mx-3" onClick={()=>setPage('simulator')} variant="contained" href="visualizer"> Simulator 
           </Button>
         </div>
-        <div>
-        </div>
       </header>
   );
 }

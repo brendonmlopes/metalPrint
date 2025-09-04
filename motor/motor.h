@@ -32,10 +32,10 @@ long zPos = 0;
 void moveTo(int, int, float, float);
 void arcTo(int, int, int, bool, float, float);
 
-void startWeld(float weldFlow){
+void startWeld(float wireFeedSpeed){
   //logic to start weld
   Serial.println("Starting weld at:");
-  Serial.println(weldFlow);
+  Serial.println(wireFeedSpeed);
 }
 
 void endWeld(){
@@ -43,12 +43,12 @@ void endWeld(){
   Serial.println("Stopping weld");
 }
 
-void weldTo(int xTarget, int yTarget, float dt, float weldFlow){
+void weldTo(int xTarget, int yTarget, float dt, float wireFeedSpeed){
   Serial.println("Welding...");
   if(weldTo <=0){
     Serial.println("WELD FLOW = 0");
   }
-  moveTo(xTarget, yTarget, dt, weldFlow);
+  moveTo(xTarget, yTarget, dt, wireFeedSpeed);
   delay(1000);
   Serial.println("Weld complete.");
 }
@@ -96,13 +96,13 @@ void findPos(int xTarget , int yTarget, int zTarget) {
   delay(1000);
 }
 
-void moveTo(int xTarget, int yTarget, float dt, float weldFlow = 0.0) {
+void moveTo(int xTarget, int yTarget, float dt, float wireFeedSpeed = 0.0) {
   const int distX = abs(xTarget-xPos);
   const int distY = abs(yTarget-yPos);
   double bufferX = 0;
   double bufferY = 0;
-  if(weldFlow>0){
-    startWeld(weldFlow);
+  if(wireFeedSpeed>0){
+    startWeld(wireFeedSpeed);
   }
   while(abs(xPos-xTarget)>=threshold | abs(yPos-yTarget)>=threshold){
     bufferX+= distX/maxX ;
@@ -151,7 +151,7 @@ void moveTo(int xTarget, int yTarget, float dt, float weldFlow = 0.0) {
   endWeld();
 }
 
-void arcTo( int xTarget, int yTarget, int radius, bool clockwise, float dt, float weldFlow = 0.0){
+void arcTo( int xTarget, int yTarget, int radius, bool clockwise, float dt, float wireFeedSpeed = 0.0){
   Serial.println("Arc move...");
 
   int xStart = xPos;
@@ -179,7 +179,7 @@ void arcTo( int xTarget, int yTarget, int radius, bool clockwise, float dt, floa
     float dx = radius * cos(i);
     float dy = radius * sin(i);
 
-    moveTo((int)x+dx, (int)y+dy, dt, weldFlow);
+    moveTo((int)x+dx, (int)y+dy, dt, wireFeedSpeed);
   }
   delay(1000);
   Serial.println("Arc move complete.");
