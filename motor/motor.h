@@ -32,17 +32,20 @@ long zPos = 0;
 void moveTo(int, int, float, float);
 void arcTo(int, int, int, bool, float, float);
 
+//Handles the energy source for the electric arc to start the weld
 void startWeld(float wireFeedSpeed){
   //logic to start weld
   Serial.println("Starting weld at:");
   Serial.println(wireFeedSpeed);
 }
 
+//Handles the energy source for the electric arc to cease the weld
 void endWeld(){
   //Logic to end weld
   Serial.println("Stopping weld");
 }
 
+//Uses moveTo() with wireFeedSpeed > 0
 void weldTo(int xTarget, int yTarget, float dt, float wireFeedSpeed){
   Serial.println("Welding...");
   if(weldTo <=0){
@@ -52,8 +55,11 @@ void weldTo(int xTarget, int yTarget, float dt, float wireFeedSpeed){
   delay(1000);
   Serial.println("Weld complete.");
 }
+
+//Moves the head without concern for path. Easy, fast, cheap computations
 void findPos(int xTarget , int yTarget, int zTarget) {
   Serial.println("z Rectract");
+  //Move up to the top
   for(int i = 0 ; i < maxZ ; i++){
     if(zPos<=0){
       break;
@@ -96,14 +102,17 @@ void findPos(int xTarget , int yTarget, int zTarget) {
   delay(1000);
 }
 
+//Goes to target on a pseudo-straight path
 void moveTo(int xTarget, int yTarget, float dt, float wireFeedSpeed = 0.0) {
   const int distX = abs(xTarget-xPos);
   const int distY = abs(yTarget-yPos);
   double bufferX = 0;
   double bufferY = 0;
-  if(wireFeedSpeed>0){
+  if(wireFeedSpeed>0.0){
     startWeld(wireFeedSpeed);
   }
+  // Each motor in X and Y have a buffer, which charges by distK/maxK, for each motor on the K axis
+  // When the buffer goes over 1, the all the motors on the K axis take a step
   while(abs(xPos-xTarget)>=threshold | abs(yPos-yTarget)>=threshold){
     bufferX+= distX/maxX ;
     bufferY+= distY/maxY ;
@@ -151,6 +160,7 @@ void moveTo(int xTarget, int yTarget, float dt, float wireFeedSpeed = 0.0) {
   endWeld();
 }
 
+//Separate the arc movement function into multiple moveTo segments to handle circular movements
 void arcTo( int xTarget, int yTarget, int radius, bool clockwise, float dt, float wireFeedSpeed = 0.0){
   Serial.println("Arc move...");
 
@@ -180,6 +190,8 @@ void arcTo( int xTarget, int yTarget, int radius, bool clockwise, float dt, floa
     float dy = radius * sin(i);
 
     moveTo((int)x+dx, (int)y+dy, dt, wireFeedSpeed);
+    x = x+dx
+    y = y+dy
   }
   delay(1000);
   Serial.println("Arc move complete.");
