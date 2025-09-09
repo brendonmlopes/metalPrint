@@ -1,14 +1,13 @@
-import {NextResponse} from 'next/server';
+import {PrismaClient} from "@prisma/client";
 
-const ORIGIN = 'http://192.168.88.49:3000'
+async function getUsers() {
+  let db = new PrismaClient();
+  const users = await db.user.findMany();
+  return users;
+}
 
 export async function GET() {
-  const data = [
-    {1: 'Data 1'},
-    {2: 'Data 2'},
-    {3: 'Data 3'},
-    {4: 'Data 4'},
-  ]
+  const data = await getUsers()
 
   return NextResponse.json(
     {
@@ -17,7 +16,7 @@ export async function GET() {
     },
     {
       headers:{
-        "Access-Control-Allow-Origin"  : ORIGIN,
+        "Access-Control-Allow-Origin"  : "*",
         "Access-Control-Allow-Methods" : 'GET,OPTIONS',
         "Access-Control-Allow-Headers" : "Content-Type",
       }
@@ -28,7 +27,7 @@ export async function GET() {
 export async function OPTIONS() {
   return new NextResponse(null, {
     headers: {
-      'Access-Control-Allow-Origin': ORIGIN,
+      'Access-Control-Allow-Origin': "*",
       'Access-Control-Allow-Methods': 'GET,POST,OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type',
     },

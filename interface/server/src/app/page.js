@@ -1,17 +1,25 @@
 import styles from "./page.module.css";
 
 export default async function Home() {
-  const res = await fetch("http://localhost:3001/api/test", {
+
+  let users = [];
+
+  const data = await fetch("http://localhost:3000/api/user", {
     method: "GET",
     headers: { "Content-Type": "application/json" },
   });
-  const data = await res.json();
+
+  for(let i=0; i<data.length; i++){
+    users.push(data[i]);
+  }
+  console.log(users)
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        <ul>
-          <li>{JSON.stringify(data.data)}</li>
-        </ul>
+        <h1>DB test:</h1>
+          <ul>
+            <li>{users}</li>
+          </ul>
       </main>
     </div>
   )
