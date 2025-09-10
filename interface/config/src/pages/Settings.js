@@ -2,6 +2,7 @@ import '../App.css';
 import 'animate.css';
 import React from 'react';
 import {useState} from 'react';
+import {useEffect} from 'react';
 
 import Box from '@mui/material/Box';
 import SensorsIcon from '@mui/icons-material/Sensors';
@@ -13,7 +14,6 @@ import Input from '@mui/material/Input';
 import ToggleController from '../components/ToggleController';
 import BinaryBulb from '../components/BinaryBulb';
 import ArrowController from '../components/ArrowController';
-
 
 export default function Settings(props) {
 
@@ -87,7 +87,6 @@ export default function Settings(props) {
               role={undefined}
               variant="contained"
               tabIndex={-1}
-              onClick={console.log("Click")}
               startIcon={<CloudUploadIcon />}
             >
               Upload GCode
