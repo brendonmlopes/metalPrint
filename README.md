@@ -28,7 +28,7 @@ The parser.c file is responsible for reading and interpreting G-code files, the 
 ---
 
 ## Data Flow
-
+![Data Flow Diagram](./images/data_flow.png)
 1. **G-code Input:** User provides G-code file with printing instructions.
 2. **Parsing:** `parser.c` reads G-code, translates it into motor movement commands.
 3. **Execution:** `motor.ino` receives movement instructions, calls functions from `motor.h` to move hardware.
