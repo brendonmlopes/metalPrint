@@ -1,24 +1,36 @@
 import styles from "./page.module.css";
 
 export default async function Home() {
+  function MakeUsersList({names}){
+    let list = [];
+    for (let i = 0; i < names.length; i++) {
+      list.push(<li key={i}>{names[i]}</li>);
+    }
+    return list;
+  }
 
   let users = [];
 
-  const data = await fetch("http://localhost:3000/api/user", {
+  const res = await fetch("http://localhost:3000/api/user", {
     method: "GET",
     headers: { "Content-Type": "application/json" },
   });
 
-  for(let i=0; i<data.length; i++){
-    users.push(data[i]);
+  const json = await res.json();
+  const data = json.data;
+
+  for (let i = 0; i < data.length; i++) {
+    users.push(data[i].name);
   }
+
+  console.log(data)
   console.log(users)
   return (
     <div className={styles.page}>
       <main className={styles.main}>
         <h1>DB test:</h1>
           <ul>
-            <li>{users}</li>
+            <MakeUsersList names={users}/>
           </ul>
       </main>
     </div>
