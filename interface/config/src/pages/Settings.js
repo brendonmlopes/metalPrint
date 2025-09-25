@@ -1,8 +1,13 @@
+"use client";
+
 import '../App.css';
 import 'animate.css';
+
 import React from 'react';
 import {useState} from 'react';
 import {useEffect} from 'react';
+
+import {getData} from '../getData.js'
 
 import Box from '@mui/material/Box';
 import SensorsIcon from '@mui/icons-material/Sensors';
@@ -16,6 +21,12 @@ import BinaryBulb from '../components/BinaryBulb';
 import ArrowController from '../components/ArrowController';
 
 export default function Settings(props) {
+
+	let [data, setData] = useState()
+
+	useEffect(()=>{
+		getData('user').then(res=>setData(res))
+	},[])
 
   return(
     <header className="App-header">
