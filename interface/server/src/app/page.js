@@ -1,10 +1,10 @@
 import styles from "./page.module.css";
 
 export default async function Home() {
-  function MakeUsersList({names}){
+  function MakeList({elements}){
     let list = [];
-    for (let i = 0; i < names.length; i++) {
-      list.push(<li key={i}>{names[i]}</li>);
+    for (let i = 0; i < elements.length; i++) {
+      list.push(<li key={i}>{elements[i]}</li>);
     }
     return list;
   }
@@ -30,7 +30,7 @@ export default async function Home() {
       <main className={styles.main}>
         <h1>DB test:</h1>
           <ul>
-            <MakeUsersList names={users}/>
+            <MakeList elements={users}/>
           </ul>
       </main>
     </div>
