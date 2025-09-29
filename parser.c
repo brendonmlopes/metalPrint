@@ -109,7 +109,7 @@ int main(int argc, char *argv[])
           fprintf(out, "arcTo(%d,%d,%d,%d,%f);\n", x, y, r, clockwise, wireFeedSpeed);
         }
         if(strcmp(mode,"-v")==0){
-            printf("Writing G%d command to output\n", cmd);
+            printf("Writing G%d command to output\n", atoi(&cmd[1]));
           }
       }
     }
