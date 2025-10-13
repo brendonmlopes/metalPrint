@@ -33,13 +33,13 @@ export async function GET(_req,{ params }) {
     return NextResponse.json({
       message: "Command executed",
       command: input.command,
-    });
+    },{headers:corsHeaders});
   } else {
     console.log("No valid command received.");
     return NextResponse.json({
       message: "No valid command received",
       command: input.command,
-    });
+    },{headers:corsHeaders});
   } 
 }
 
