@@ -15,10 +15,10 @@ export async function OPTIONS() {
 export async function GET(_req,{ params }) {
   let input = await params;
 
-  if(params.command){
+  if(input.command){
     console.log("Command received:", input.command);
   }
-  if(params.command === "parser"){
+  if(input.command === "parser"){
     exec("cd ../../;./parser -v;cd interface/server;",(error, stdout, stderr) => {
       if (error) {
         console.error(`Error executing command:\n${error.message}`);
@@ -32,7 +32,7 @@ export async function GET(_req,{ params }) {
     });
     return NextResponse.json({
       message: "Command executed",
-      command: params.command,
+      command: input.command,
     });
   } else {
     console.log("No valid command received.");
