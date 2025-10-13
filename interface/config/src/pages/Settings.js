@@ -105,6 +105,17 @@ export default function Settings(props) {
             </Button>
           </div>
 
+          <div onClick={()=>{execute('parser')}} className="col-2">
+            <Button
+              component="label"
+              role={undefined}
+              variant="contained"
+              tabIndex={-1}
+            >
+                Parse
+            </Button>
+          </div>
+
           <div className="col-5">
           </div>
         </div>
