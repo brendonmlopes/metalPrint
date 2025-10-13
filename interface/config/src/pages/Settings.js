@@ -20,6 +20,7 @@ import Input from '@mui/material/Input';
 import ToggleController from '../components/ToggleController';
 import BinaryBulb from '../components/BinaryBulb';
 import ArrowController from '../components/ArrowController';
+import ExecuteButton from '../components/ExecuteButton.js';
 
 export default function Settings(props) {
 
@@ -100,16 +101,7 @@ export default function Settings(props) {
             </Button>
           </div>
 
-          <div onClick={()=>{execute('parser')}} className="col-2">
-            <Button
-              component="label"
-              role={undefined}
-              variant="contained"
-              tabIndex={-1}
-            >
-                Parse
-            </Button>
-          </div>
+	<ExecuteButton command="parse" text="Parse"/>
 
           <div className="col-5">
           </div>
