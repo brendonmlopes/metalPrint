@@ -1,13 +1,13 @@
 # metalPrint
 
-**metalPrint** is an open-source software suite for controlling stepper motors and a torch (current, voltage, etc.) for a metal 3D printer. It includes CLI tools, sensor data parsing, visualization, and a non-technical user interface.
+**metalPrint** is an software suite for controlling stepper motors and a torch (current, voltage, etc.) for a metal 3D printer. It includes CLI tools, sensor data parsing, visualization, and a non-technical user interface.
 
 ---
 
 ## Project Structure Overview
 
 ### `interface/`
-Contains user interfaces (CLI and graphical), visualization tools, and configuration management utilities. These components allow users to interact with the printer, monitor print progress, and adjust hardware settings.
+Contains user interface, visualization tools, and configuration management utilities. These components allow users to interact with the printer, monitor print progress, and adjust hardware settings.
 
 #### `interface/config/visualizer`
 A specialized module for rendering parsed configuration and live sensor data. It provides interactive or static visualizations of hardware states and print progress, making system status intuitive for users.
@@ -20,10 +20,6 @@ The parser.c file is responsible for reading and interpreting G-code files, the 
 
 ### `motor.ino` and `motor.h`
 `motor.ino` is the Arduino sketch that directly controls the stepper motors and torch hardware. It receives commands from the parsed G-code (via parser.c), and uses functions defined in `motor.h` for hardware abstraction.
-
-- **moveTo(xTarget, yTarget):** Moves X/Y stepper motors to target positions, synchronizing arrival.
-- **findPos(xTarget, yTarget, zTarget):** Moves all axes to specified positions, with Z-axis retraction and elevation.
-- **Integration:** Receives motor instructions translated from G-code, executes physical movements.
 
 ---
 
@@ -40,18 +36,49 @@ The parser.c file is responsible for reading and interpreting G-code files, the 
 
 ### Prerequisites
 - **Arduino IDE** ([Download](https://www.arduino.cc/en/software))
-- **Arduino Board** (Uno, Mega, Nano, etc.)
+- **Arduino Board or Raspberry Pi (Recommended)**
 - **USB Cable** for uploading firmware
 - **Basic Electronics** (wires, breadboard, sensors, actuators)
 
 ### Installation
 1. Clone the repository:
-   ```sh
-   git clone https://github.com/brendonmlopes/metalPrint.git
+```sh
+git clone https://github.com/brendonmlopes/metalPrint.git
    ```
-2. Open the Arduino project in the IDE.
-3. Connect your hardware according to your configuration.
-4. Upload the firmware.
+2. Compile and run the builder
+```sh
+gcc build.c -o build
+./build
+```
+
+3. Go to the interface directory and run the frontend interface
+```zsh
+cd interface/config
+npm install
+npm start
+```
+4. On **another terminal**, go to the server directory and run the backend server
+```zsh
+cd interface/server
+npm install
+npm run dev
+```
+
+5. On **another terminal or machine(preferrably)**, run a DB with the apropriate credentials. In this case, we run a PostgreSQL instance with the following command:
+```zsh
+docker run --name metalprint-db -e POSTGRES_USER=user -e POSTGRES_PASSWORD=password -e POSTGRES_DB=metalprint -p 5432:5432 -d postgres
+```
+
+6. Run the prisma client
+```zsh
+cd interface/server
+npm install @prisma/client
+# Configure your database connection in the .env file
+npx prisma init
+# Configure your schema in prisma/schema.prisma
+npx prisma generate
+npx prisma dev
+```
 
 ---
 
@@ -68,13 +95,10 @@ See the [issues page](https://github.com/brendonmlopes/metalPrint/issues).
 
 ---
 
-## License
-
-Distributed under the MIT License. See `LICENSE` for details.
-
----
-
 ## Contact
 
-- **Author:** [brendonmlopes](https://github.com/brendonmlopes)
+- **Authors:** 
+[brendonmlopes](https://github.com/brendonmlopes)
+[NycFenix](https://github.com/NycFenix)
+
 - **Project URL:** [https://github.com/brendonmlopes/metalPrint](https://github.com/brendonmlopes/metalPrint)
