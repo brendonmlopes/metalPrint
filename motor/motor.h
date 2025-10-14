@@ -190,8 +190,8 @@ void arcTo( int xTarget, int yTarget, int radius, bool clockwise, float dt, floa
     float dy = radius * sin(i);
 
     moveTo((int)x+dx, (int)y+dy, dt, wireFeedSpeed);
-    x = x+dx
-    y = y+dy
+    x = x+dx;
+    y = y+dy;
   }
   delay(1000);
   Serial.println("Arc move complete.");
