@@ -11,7 +11,11 @@ int main(int argc, char *argv[])
     printf("______________________________\n");
     printf("Compiling parser.c...\n");
   }
+  #ifdef _WIN32
+    char *command = "gcc parser.c -o parser.exe";
+  #else
     char *command = "gcc parser.c -o parser";
+  #endif
     int result = system(command);
 
     if (result == -1) {
@@ -28,11 +32,16 @@ int main(int argc, char *argv[])
 
   // Execute the compiled binary with the mode argument
   // Note: The mode argument is passed to the parser binary
- 
+// Check if the system is Windows or Unix-based to use the correct command
+
   char str[256];
-  strcpy(str, "./parser ");
-  strcat(str, mode);
-  system(str);
+  #ifdef _WIN32
+    strcpy(str, "parser.exe ");
+  #else
+    strcpy(str, "./parser ");
+  #endif
+    strcat(str, mode);
+    system(str);
 
   if(strcmp(mode,"-v")==0){
     printf("________________________________________\nExecution ended\n");
