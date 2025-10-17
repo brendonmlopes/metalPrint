@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { exec } from 'child_process';
+const os = require("os");
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -19,6 +20,19 @@ export async function GET(_req,{ params }) {
     console.log("Command received:", input.command);
   }
   if(input.command === "parser"){
+	if(os.platform() === "win32"){
+    exec("cd ../../ & parser.exe -v & cd interface/server",(error, stdout, stderr) => {
+      if (error) {
+        console.error(`Error executing command:\n${error.message}`);
+        return;
+      }
+      if (stderr) {
+        console.error(`Command stderr:\n${stderr}`);
+        return;
+      }
+      console.log(`Command stdout:\n${stdout}`);
+    });
+	}else{
     exec("cd ../../;./parser -v;cd interface/server;",(error, stdout, stderr) => {
       if (error) {
         console.error(`Error executing command:\n${error.message}`);
@@ -30,6 +44,7 @@ export async function GET(_req,{ params }) {
       }
       console.log(`Command stdout:\n${stdout}`);
     });
+	}
     return NextResponse.json({
       message: "Command executed",
       command: input.command,
