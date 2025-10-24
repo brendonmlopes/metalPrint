@@ -4,7 +4,6 @@ import 'animate.css';
 import {useState} from 'react';
 import {useEffect} from 'react';
 
-import Grid from '../components/Grid';
 import LiveView from '../components/LiveView';
 import ArrowController from '../components/ArrowController';
 import SpeedIcon from '@mui/icons-material/Speed';
@@ -15,13 +14,15 @@ import TempIcon from '@mui/icons-material/DeviceThermostatTwoTone';
 export default function Dashboard(props){
 
   //Dummy for visualization:
-  let pos = {x:40,y:25,z:2}
-  let temp= {value:211, unit:"ºC"}
-  let speed= {value:10, unit:"mm/s"}
-  let voltage = {value:14, unit:"V"}
-  const current = {value:1.2, unit:"A"}
+  let [state,setState] = useState({
+    pos:{x:40,y:25,z:2},
+    temp:{value:211, unit:"ºC"},
+    speed:{value:10, unit:"mm/s"},
+    voltage:{value:14, unit:"V"},
+    current:{value:1.2, unit:"A"}
+  })
 
-  let paneWidth = 50
+  const paneWidth = 50
 
   return (
     <div className="App-header">
@@ -42,13 +43,13 @@ export default function Dashboard(props){
 
             <div className="row border-bottom rounded-bottom" style={{width:paneWidth+'rem'}}>
               <div className="col-4 border-start border-end">
-                <p>{pos.x ? pos.x : "Error"}</p>
+                <p>{state['pos'].x ? state['pos'].x : "Error"}</p>
               </div>
               <div className="col-4 border-end">
-                <p>{pos.y ? pos.y : "Error"}</p>
+                <p>{state['pos'].y ? state['pos'].y : "Error"}</p>
               </div>
               <div className="col-4 border-end">
-                <p>{pos.z ? pos.z : "Error"}</p>
+                <p>{state['pos'].z ? state['pos'].z : "Error"}</p>
               </div>
             </div>
 
@@ -56,19 +57,19 @@ export default function Dashboard(props){
               <div className="col">
                 <div className="border- border-bottom"><TempIcon color={"primary"}/></div>
           
-                <div>{temp.value + temp.unit ? temp.value + temp.unit : "Error"}</div>
+                <div>{state['temp'].value + state['temp'].unit ? state['temp'].value + state['temp'].unit : "Error"}</div>
               </div>
               <div className="col">
                 <div className="border-bottom"><SpeedIcon color={"primary"}/></div>
-                <div>{speed.value + speed.unit ? speed.value + speed.unit : "Error"}</div>
+                <div>{state['speed'].value + state['speed'].unit ? state['speed'].value + state['speed'].unit : "Error"}</div>
               </div>
               <div className="col">
                 <div className="border-bottom"><BoltRoundedIcon color={"primary"}/></div>
-                <div>{voltage.value + voltage.unit ? voltage.value + voltage.unit : "Error"}</div>
+                <div>{state['voltage'].value + state['voltage'].unit ? state['voltage'].value + state['voltage'].unit : "Error"}</div>
               </div>
               <div className="col">
                 <div className="border-bottom"><PowerRoundedIcon color={"primary"}/></div>
-                <div>{current.value + current.unit ? current.value + current.unit : "Error"}</div>
+                <div>{state['current'].value + state['current'].unit ? state['current'].value + state['current'].unit : "Error"}</div>
               </div>
             </div>
             <div className="row border rounded my-3">
