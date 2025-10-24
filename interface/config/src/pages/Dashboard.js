@@ -7,6 +7,10 @@ import {useEffect} from 'react';
 import Grid from '../components/Grid';
 import LiveView from '../components/LiveView';
 import ArrowController from '../components/ArrowController';
+import SpeedIcon from '@mui/icons-material/Speed';
+import BoltRoundedIcon from '@mui/icons-material/BoltRounded';
+import PowerRoundedIcon from '@mui/icons-material/PowerRounded';
+import TempIcon from '@mui/icons-material/DeviceThermostatTwoTone';
 
 export default function Dashboard(props){
 
@@ -15,7 +19,8 @@ export default function Dashboard(props){
   let temp= {value:211, unit:"ºC"}
   let speed= {value:10, unit:"mm/s"}
   let voltage = {value:14, unit:"V"}
-  let current = {value:1.2, unit:"A"}
+  const current = {value:1.2, unit:"A"}
+
   let paneWidth = 50
 
   return (
@@ -29,7 +34,7 @@ export default function Dashboard(props){
         <div className="row">
           <div className="px-5">
 
-            <div className="row mt-3 border rounded-top" style={{width:paneWidth+'rem'}}>
+            <div className="row mt-3 border rounded-top text-primary" style={{width:paneWidth+'rem'}}>
               <div className="col-4"> <p>X</p> </div>
               <div className="col-4"> <p>Y</p> </div>
               <div className="col-4"> <p>Z</p> </div>
@@ -37,32 +42,33 @@ export default function Dashboard(props){
 
             <div className="row border-bottom rounded-bottom" style={{width:paneWidth+'rem'}}>
               <div className="col-4 border-start border-end">
-                <p>{pos.x}</p>
+                <p>{pos.x ? pos.x : "Error"}</p>
               </div>
               <div className="col-4 border-end">
-                <p>{pos.y}</p>
+                <p>{pos.y ? pos.y : "Error"}</p>
               </div>
               <div className="col-4 border-end">
-                <p>{pos.z}</p>
+                <p>{pos.z ? pos.z : "Error"}</p>
               </div>
             </div>
 
             <div className="row border rounded mt-3 border-top">
               <div className="col">
-                <div className="border- border-bottom">🌡️</div>
-                <div>{temp.value + temp.unit}</div>
+                <div className="border- border-bottom"><TempIcon color={"primary"}/></div>
+          
+                <div>{temp.value + temp.unit ? temp.value + temp.unit : "Error"}</div>
               </div>
               <div className="col">
-                <div className="border-bottom"><img width="auto" height="40" alt="" src="/speedometer.png"></img></div>
-                <div>{speed.value + speed.unit}</div>
+                <div className="border-bottom"><SpeedIcon color={"primary"}/></div>
+                <div>{speed.value + speed.unit ? speed.value + speed.unit : "Error"}</div>
               </div>
               <div className="col">
-                <div className="border-bottom">✴️</div>
-                <div>{voltage.value + voltage.unit}</div>
+                <div className="border-bottom"><BoltRoundedIcon color={"primary"}/></div>
+                <div>{voltage.value + voltage.unit ? voltage.value + voltage.unit : "Error"}</div>
               </div>
               <div className="col">
-                <div className="border-bottom">🔌</div>
-                <div>{current.value + current.unit}</div>
+                <div className="border-bottom"><PowerRoundedIcon color={"primary"}/></div>
+                <div>{current.value + current.unit ? current.value + current.unit : "Error"}</div>
               </div>
             </div>
             <div className="row border rounded my-3">

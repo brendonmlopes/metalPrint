@@ -50,7 +50,7 @@ export default function Sensor(props){
   return (
     <div className="App-header">
       <div className="App-header container container-lg py-1">
-        <h1 className="animate__animated animate__bounceIn m-3"> Sensors dashboard </h1>
+        <div className="m-3"> </div>
           <div className="m-3">
 
             <div className="row flex-nowrap justify-content-center mt-3">
@@ -131,7 +131,6 @@ export default function Sensor(props){
                 <BinaryBulb data={state['LsensorY1Connect']} title={"LSY 1"} />
               </div>
             </div>
-
 
             <div className="row flex-nowrap justify-content-center">
               <div className="col-4 border-start border-bottom bg-dark" style={{borderBottomLeftRadius:7}}>

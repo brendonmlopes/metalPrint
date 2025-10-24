@@ -1,6 +1,7 @@
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import CircleIcon from '@mui/icons-material/Circle';
 import Button from '@mui/material/Button';
+import HomeIcon from '@mui/icons-material/Home';
 
 export default function ArrowController(){
   return(
@@ -28,7 +29,7 @@ export default function ArrowController(){
         </div>
         <div className="col-4 bg-black d-flex justify-content-center align-items-center">
           <Button>
-            <CircleIcon/>
+            <HomeIcon/>
           </Button>
         </div>
         <div className="col-4 bg-black border rounded-end d-flex justify-content-center align-items-center">
@@ -44,9 +45,11 @@ export default function ArrowController(){
         </div>
 
         <div className="col-4 bg-black border rounded-bottom d-flex justify-content-center align-items-center">
+
           <Button>       
-            <ArrowUpwardIcon sx={{transform:'rotate(180deg)'}}/>
+            <ArrowUpwardIcon sx={{transform:'rotate(180deg)'}} onClick={console.log("HLKHEFKL")}/>
           </Button>
+
         </div>
     
         <div className="col-4">
