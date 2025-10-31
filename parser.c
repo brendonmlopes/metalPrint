@@ -5,12 +5,14 @@
 
 int main(int argc, char *argv[])
 {
+  const char gcodePath[] = "tests/g1.gcode";
+  const char firmwarePath[] = "motor/motor.ino";
   const char *commands[] = {
   "G0","G1", "G2", "G3", "G4", "G5", "G6"
   };
 
-  FILE* file = fopen("tests/g1.gcode", "r");
-  FILE* out = fopen("motor/motor.ino", "w");
+  FILE* file = fopen(gcodePath, "r");
+  FILE* out = fopen(firmwarePath, "w");
 
   if (file == NULL) {
     fprintf(stderr, "Error opening file\n");
@@ -34,9 +36,12 @@ int main(int argc, char *argv[])
   int commentCount = 0;
   char line[512];
   float wireFeedSpeed = 0.0;
+
+
   if(strcmp(mode,"-v")==0){
     printf("G-code Parser\n");
-  } 
+  }
+  
   while ( fgets(line, sizeof(line), file) ) {
     if( lineIdx == 0 ){
       // Skip the first line
