@@ -13,7 +13,11 @@ import TempIcon from '@mui/icons-material/DeviceThermostatTwoTone';
 
 export default function Dashboard(props){
 
-  //Dummy for visualization:
+
+  useEffect(() => {
+    document.title = "3D Printer Dashboard"
+  })
+  
   let [state,setState] = useState({
     pos:{x:40,y:25,z:2},
     temp:{value:211, unit:"ºC"},
