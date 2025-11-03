@@ -1,25 +1,33 @@
 import {execute} from '../Execute.js';
 import Button from '@mui/material/Button';
+import {useState} from 'react';
+
 export default function ExecuteButton(props){
-	let color = "primary"
+  let command = props.command
+  let text = props.text
+  let [ color, setColor ] = useState("primary");
+
 	function changeColor(){
 		if(color==="primary"){
-			color="secondary"
+      setTimeout(()=>{
+        setColor("secondary")
+      },1000)
 		}else{
-			color="primary"
+        setColor("primary")
 		}
 	}
+
 	return(
-		<div onClick={()=>{execute('parser');changeColor();}} className="col-2">
+		<div onClick={()=>{execute(command);changeColor();}} className="col-2">
 			<Button
 				component="label"
 				role={undefined}
 				variant="contained"
 				color={color}
 				tabIndex={-1}
-				id="parseButton"
+				id={{command}+"ExecuteButton"}
 			>
-				Parse
+			  {text}
 			</Button>
 		</div>
 	)

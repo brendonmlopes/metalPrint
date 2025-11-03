@@ -35,11 +35,15 @@ function App() {
     })
   }
 
+  function login(){
+    console.log("Logging in...");
+  } 
+
   let PageComponent = pages[state.page]
 
   return (
     <div className="App">
-      <NavBar state={state} setPage={setPage}/>
+      <NavBar state={state} setPage={setPage} setLoggedIn={login}/>
       <PageComponent state={state} setPage={setPage}/>
     </div>
   );

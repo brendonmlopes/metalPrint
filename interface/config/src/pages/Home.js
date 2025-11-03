@@ -1,16 +1,17 @@
 'use client'
 
 import logo from '../assets/logo_red.png';
-import {useState} from 'react';
 import {useEffect} from 'react';
-import 'animate.css';
 import Button from '@mui/material/Button';
 import React from 'react';
-import {getData} from '../getData.js';
 
 export default function Home(props) {
 
 	let [state, setPage] = [props.state, props.setPage]
+
+  useEffect(() => {
+    document.title = "3D Printer Dashboard"
+  })
 
   return (
       <header className="App-header">

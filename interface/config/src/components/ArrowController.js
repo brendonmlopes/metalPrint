@@ -12,7 +12,7 @@ export default function ArrowController(){
 
         <div className="col-4 bg-black border rounded-top d-flex justify-content-center align-items-center">
           <Button> 
-            <ArrowUpwardIcon />
+            <ArrowUpwardIcon onClick={()=>console.log("+Y")}/>
           </Button>
         </div>
 
@@ -23,17 +23,17 @@ export default function ArrowController(){
       <div className="row">
         <div className="col-4 bg-black border rounded-start d-flex justify-content-center align-items-center">
           <Button >
-            <ArrowUpwardIcon sx={{transform:'rotate(-90deg)'}}/>
+            <ArrowUpwardIcon sx={{transform:'rotate(-90deg)'}} onClick={()=>console.log("-X")}/>
           </Button>
         </div>
         <div className="col-4 bg-black d-flex justify-content-center align-items-center">
           <Button>
-            <HomeIcon/>
+            <HomeIcon onClick={()=>console.log("Home...")}/>
           </Button>
         </div>
         <div className="col-4 bg-black border rounded-end d-flex justify-content-center align-items-center">
           <Button>       
-            <ArrowUpwardIcon sx={{transform:'rotate(90deg)'}}/>
+            <ArrowUpwardIcon sx={{transform:'rotate(90deg)'}} onClick={()=>console.log("+X")}/>
           </Button>
         </div>
       
@@ -46,7 +46,7 @@ export default function ArrowController(){
         <div className="col-4 bg-black border rounded-bottom d-flex justify-content-center align-items-center">
 
           <Button>       
-            <ArrowUpwardIcon sx={{transform:'rotate(180deg)'}} onClick={console.log("HLKHEFKL")}/>
+            <ArrowUpwardIcon sx={{transform:'rotate(180deg)'}} onClick={()=>console.log("-Y")}/>
           </Button>
 
         </div>
@@ -63,14 +63,14 @@ export default function ArrowController(){
       <div className="row">
         <div className="col-4 bg-black border rounded d-flex justify-content-center align-items-center">
           <Button>       
-            <ArrowUpwardIcon />
+            <ArrowUpwardIcon onClick={()=>console.log("+Z")}/>
           </Button>
         </div>
         <div className="col-4">
         </div>
         <div className="col-4 bg-black border rounded d-flex justify-content-center align-items-center">
           <Button>       
-            <ArrowUpwardIcon sx={{transform:'rotate(180deg)'}}/>
+            <ArrowUpwardIcon sx={{transform:'rotate(180deg)'}} onClick={()=>{console.log("-Z")}}/>
           </Button>
         </div>
       </div>

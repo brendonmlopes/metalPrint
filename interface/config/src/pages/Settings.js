@@ -4,16 +4,9 @@ import '../App.css';
 import 'animate.css';
 
 import React from 'react';
-import {useState} from 'react';
-import {useEffect} from 'react';
-
-import {getData} from '../getData.js'
-import {execute} from '../Execute.js'
 
 import Box from '@mui/material/Box';
 import SensorsIcon from '@mui/icons-material/Sensors';
-import LightbulbIcon from '@mui/icons-material/Lightbulb';
-import LightbulbOutlineIcon from '@mui/icons-material/LightbulbOutline';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import Button from '@mui/material/Button';
 import Input from '@mui/material/Input';
@@ -102,6 +95,7 @@ export default function Settings(props) {
           </div>
 
 	<ExecuteButton command="parse" text="Parse"/>
+	<ExecuteButton command="api/update/sensor" text="update"/>
 
           <div className="col-5">
           </div>

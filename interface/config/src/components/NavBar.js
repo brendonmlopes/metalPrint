@@ -2,10 +2,12 @@ import logo from '../assets/logo_red.png';
 import '../App.css';
 import 'animate.css';
 import React from 'react';
-
+import LogoutIcon from '@mui/icons-material/Logout';
+import LoginIcon from '@mui/icons-material/Login';
 export default function NavBar(props){
 
   let [state, setPage] = [props.state, props.setPage]
+  let [loggedIn, setLoggedIn] = [props.loggedIn, props.setLoggedIn]
 
   let home = {page:'home',active:false}
   let settings = {page:'settings',active:false}
@@ -50,6 +52,12 @@ export default function NavBar(props){
           <a className="nav-link" style={{color:simulator.active ? 'black' : '#999999'}} href="visualizer" onClick={()=>setPage('simulator')}>Simulator</a>
         </li>
       </ul>
+    </div>
+    <div>
+      {loggedIn ? 
+        <button className="btn btn-outline-danger" onClick={()=>setLoggedIn(false)}><LogoutIcon /> </button> 
+        : 
+        <button className="btn btn-outline-success" onClick={()=>setLoggedIn(true)}><LoginIcon /> </button>}
     </div>
   </div>
 </nav>
