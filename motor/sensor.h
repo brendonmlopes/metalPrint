@@ -6,15 +6,14 @@
 const int S0PIN A0;
 const int S1PIN A1;
 const int S2PIN A2;
-int s1val = 0;
 
-void setup() {
+void initializeSensors(){
   pinMode(S0PIN, INPUT);
   pinMode(S1PIN, INPUT);
   pinMode(S2PIN, INPUT);
 }
 
-void loop(){
+void writeSensor(){
 
   int s0val = analogRead(S0PIN);
 
