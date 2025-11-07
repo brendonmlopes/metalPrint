@@ -18,7 +18,7 @@ import LiveView from '../components/LiveView';
 export default function Dashboard(props){
 
   let [state,setState] = useState({
-    pos:{x:40,y:25,z:2},
+    pos:{x:40,y:25,z:2,alpha:12,beta:5.75},
     temp:{value:211, unit:"ºC"},
     speed:{value:10, unit:"mm/s"},
     voltage:{value:14, unit:"V"},
@@ -40,23 +40,33 @@ export default function Dashboard(props){
           <div className="px-5">
 
             <div className="row mt-3 border border-primary rounded-top text-primary" style={{width:paneWidth+'rem'}}>
-              <div className="col-4"> <p>X</p> </div>
-              <div className="col-4"> <p>Y</p> </div>
-              <div className="col-4"> <p>Z</p> </div>
+              <div className="col-2"> <p>X</p> </div>
+              <div className="col-2"> <p>Y</p> </div>
+              <div className="col-2"> <p>Z</p> </div>
+              <div className="col-3"> <p>α</p> </div>
+              <div className="col-3"> <p>β</p> </div>
             </div>
 
             <div className="row border-bottom rounded-bottom" style={{width:paneWidth+'rem'}}>
 
-              <div className="col-4 border-start border-end">
-                <p>{state['pos'].x ? state['pos'].x : "Error"}</p>
+              <div className="col-2 border-start border-end">
+                <p>{state['pos'].x ? state['pos'].x  + "mm" : "Error"}</p>
               </div>
 
-              <div className="col-4 border-end">
-                <p>{state['pos'].y ? state['pos'].y : "Error"}</p>
+              <div className="col-2 border-end">
+                <p>{state['pos'].y ? state['pos'].y  + "mm" : "Error"}</p>
               </div>
 
-              <div className="col-4 border-end">
-                <p>{state['pos'].z ? state['pos'].z : "Error"}</p>
+              <div className="col-2 border-end">
+                <p>{state['pos'].z ? state['pos'].z + "mm" : "Error"}</p>
+              </div>
+
+              <div className="col-3 border-end">
+                <p>{state['pos'].alpha ? state['pos'].alpha + "º": "Error"}</p>
+              </div>
+
+              <div className="col-3 border-end">
+                <p>{state['pos'].beta ? state['pos'].beta + "º" : "Error"}</p>
               </div>
 
             </div>
