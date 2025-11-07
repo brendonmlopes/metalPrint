@@ -94,8 +94,8 @@ export default function Settings(props) {
             </Button>
           </div>
 
-	<ExecuteButton command="parse" text="Parse"/>
-	<ExecuteButton command="api/update/sensor" text="update"/>
+	<ExecuteButton command="execute/parser" text="Parse"/>
+	<ExecuteButton command="update/sensor" text="update"/>
 
           <div className="col-5">
           </div>

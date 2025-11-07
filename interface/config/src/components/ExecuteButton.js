@@ -9,9 +9,10 @@ export default function ExecuteButton(props){
 
 	function changeColor(){
 		if(color==="primary"){
+      setColor("secondary")
       setTimeout(()=>{
-        setColor("secondary")
-      },1000)
+        setColor("primary")
+      },2000)
 		}else{
         setColor("primary")
 		}
