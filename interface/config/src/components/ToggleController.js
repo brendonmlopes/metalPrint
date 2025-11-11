@@ -23,7 +23,7 @@ export default function ToggleController(props) {
   };
 
   return (
-    <div className="row bg-dark">
+    <div className="row py-5 bg-dark">
       <FormControlLabel
         control={
           <Switch

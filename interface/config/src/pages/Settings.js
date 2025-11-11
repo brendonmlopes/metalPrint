@@ -50,7 +50,7 @@ export default function Settings(props) {
         <div className="row">
           <div className="col-1">
           </div>
-          <div className="col-2 border rounded-bottom">
+          <div className="col-2 border bg-dark rounded-bottom">
             <ToggleController title="All motors" control={[{title:'X'},{title:'Y 1'},{title:'Y 2'},{title:'Z 1'},{title:'Z 2'},{title:'Z 3'},{title:'Z 4'},]} fontSize={32} />
           </div>
 

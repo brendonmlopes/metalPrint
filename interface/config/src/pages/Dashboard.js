@@ -18,7 +18,7 @@ import LiveView from '../components/LiveView';
 export default function Dashboard(props){
 
   let [state,setState] = useState({
-    pos:{x:40,y:25,z:2,alpha:12,beta:5.75},
+    pos:{x:92,y:25,z:2,alpha:12,beta:5.75},
     temp:{value:211, unit:"ºC"},
     speed:{value:10, unit:"mm/s"},
     voltage:{value:14, unit:"V"},
